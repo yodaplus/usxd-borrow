@@ -6162,10 +6162,10 @@
     "@web3-react/types" "^6.0.7"
     tiny-invariant "^1.0.6"
 
-"@web3-react/network-connector@^6.1.5":
-  version "6.1.5"
-  resolved "https://registry.yarnpkg.com/@web3-react/network-connector/-/network-connector-6.1.5.tgz#1fcce1dc7b03dac23fcc01ad0b0c870cb0e39e0b"
-  integrity sha512-Uwk8iMG8YCnTeKmyXt3Q7QJN28qTs0YTTW8/aes2R26KmYWCk3GdL2eal0QcXUixJy/IjrhXzbwzHgpneJqrWg==
+"@web3-react/network-connector@^6.2.9":
+  version "6.2.9"
+  resolved "https://registry.yarnpkg.com/@web3-react/network-connector/-/network-connector-6.2.9.tgz#e8f05dc101dccbc04879d1f56f958032c26cb906"
+  integrity sha512-S1yexq47XZlM4pbJ03gwp3NOlaVttCAlWV/fq220almSYNe0sAwLIQP/T6Wio15DIn76u34lIZWBeW0WLs/HGQ==
   dependencies:
     "@web3-react/abstract-connector" "^6.0.7"
     "@web3-react/types" "^6.0.7"

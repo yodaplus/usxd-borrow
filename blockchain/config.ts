@@ -28,9 +28,13 @@ import {
   getCollateralTokens,
   getOsms,
 } from './addresses/addressesUtils'
+import { default as apothemAddresses } from './addresses/apothem.json'
 import { default as goerliAddresses } from './addresses/goerli.json'
 import { default as kovanAddresses } from './addresses/kovan.json'
 import { default as mainnetAddresses } from './addresses/mainnet.json'
+import { networkNameToId } from '@oasisdex/web3-context/lib/src/network'
+
+networkNameToId['apothem'] = 51
 
 export function contractDesc(abi: any, address: string): ContractDesc {
   return { abi, address }
@@ -201,6 +205,58 @@ const goerli: NetworkConfig = {
   cacheApi: 'https://oazo-bcache-goerli-staging.new.oasis.app/api/v1',
 }
 
+const apothem: NetworkConfig = {
+  id: '51',
+  name: 'apothem',
+  label: 'apothem',
+  infuraUrl: `https://rpc-apothem.xinfin.yodaplus.net`,
+  infuraUrlWS: '',
+  safeConfirmations: 1,
+  otc: contractDesc(otc, '0x0000000000000000000000000000000000000000'),
+  collaterals: getCollaterals(apothemAddresses),
+  tokens: {
+    ...getCollateralTokens(apothemAddresses),
+    WETH: contractDesc(eth, apothemAddresses.ETH),
+    DAI: contractDesc(erc20, apothemAddresses.MCD_DAI),
+  },
+  joins: {
+    ...getCollateralJoinContracts(apothemAddresses),
+  },
+  getCdps: contractDesc(getCdps, apothemAddresses.GET_CDPS),
+  mcdOsms: getOsms(apothemAddresses),
+  mcdPot: contractDesc(mcdPot, apothemAddresses.MCD_POT),
+  mcdJug: contractDesc(mcdJug, apothemAddresses.MCD_JUG),
+  mcdEnd: contractDesc(mcdEnd, apothemAddresses.MCD_END),
+  mcdSpot: contractDesc(mcdSpot, apothemAddresses.MCD_SPOT),
+  mcdDog: contractDesc(mcdDog, apothemAddresses.MCD_DOG),
+  dssCdpManager: contractDesc(dssCdpManager, apothemAddresses.CDP_MANAGER),
+  otcSupportMethods: contractDesc(otcSupport, '0x0000000000000000000000000000000000000000'),
+  vat: contractDesc(vat, apothemAddresses.MCD_VAT),
+  mcdJoinDai: contractDesc(mcdJoinDai, apothemAddresses.MCD_JOIN_DAI),
+  dsProxyRegistry: contractDesc(dsProxyRegistry, apothemAddresses.PROXY_REGISTRY),
+  dsProxyFactory: contractDesc(dsProxyFactory, apothemAddresses.PROXY_FACTORY),
+  dssProxyActions: contractDesc(dssProxyActions, apothemAddresses.PROXY_ACTIONS),
+  dssMultiplyProxyActions: contractDesc(
+    dssMultiplyProxyActions,
+    '0x24E54706B100e2061Ed67fAe6894791ec421B421',
+  ),
+  // Currently this is not supported on Goerli - no deployed contract
+  exchange: contractDesc(exchange, getConfig()?.publicRuntimeConfig?.exchangeAddress || ''),
+  // Currently this is not supported on Goerli - no deployed contract
+  fmm: goerliAddresses.MCD_FLASH,
+  etherscan: {
+    url: 'https://goerli.etherscan.io',
+    apiUrl: 'https://api-goerli.etherscan.io/api',
+    apiKey: etherscanAPIKey || '',
+  },
+  taxProxyRegistries: [goerliAddresses.PROXY_REGISTRY],
+  dssProxyActionsDsr: contractDesc(dssProxyActionsDsr, goerliAddresses.PROXY_ACTIONS_DSR),
+  magicLink: {
+    apiKey: '',
+  },
+  cacheApi: 'https://oazo-bcache-goerli-staging.new.oasis.app/api/v1',
+}
+
 const hardhat: NetworkConfig = {
   ...protoMain,
   id: '2137',
@@ -221,8 +277,8 @@ const hardhat: NetworkConfig = {
   ),
 }
 
-export const networksById = keyBy([main, kovan, hardhat, goerli], 'id')
-export const networksByName = keyBy([main, kovan, hardhat, goerli], 'name')
+export const networksById = keyBy([main, kovan, hardhat, goerli, apothem], 'id')
+export const networksByName = keyBy([main, kovan, hardhat, goerli, apothem], 'name')
 
 export const dappName = 'Oasis'
 export const pollingInterval = 12000

@@ -9,12 +9,12 @@ import {
   Web3ContextNotConnected,
 } from '@oasisdex/web3-context'
 import { UnsupportedChainIdError } from '@web3-react/core'
-import { InjectedConnector } from '@web3-react/injected-connector'
 import { NetworkConnector } from '@web3-react/network-connector'
 import { PortisConnector } from '@web3-react/portis-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { dappName, networksById, pollingInterval } from 'blockchain/config'
+import { InjectedConnector } from 'blockchain/InjectedConnector'
 import browserDetect from 'browser-detect'
 import { useAppContext } from 'components/AppContextProvider'
 import { LedgerAccountSelection } from 'components/connectWallet/LedgerAccountSelection'
@@ -54,7 +54,7 @@ export async function getConnector(
   switch (connectorKind) {
     case 'injected': {
       const connector = new InjectedConnector({
-        supportedChainIds: Object.values(networksById).map(({ id }) => Number.parseInt(id)),
+        provider: (window as any).ethereum,
       })
       const connectorChainId = Number.parseInt((await connector.getChainId()) as string)
       if (network !== connectorChainId) {
@@ -124,20 +124,7 @@ interface SupportedWallet {
   connectionKind: ConnectionKind
 }
 
-const SUPPORTED_WALLETS: SupportedWallet[] = [
-  { iconName: 'metamask_color', connectionKind: 'injected' },
-  { iconName: 'wallet_connect_color', connectionKind: 'walletConnect' },
-  { iconName: 'coinbase_color', connectionKind: 'walletLink' },
-  { iconName: 'portis', connectionKind: 'portis' },
-  { iconName: 'myetherwallet', connectionKind: 'myetherwallet' },
-  { iconName: 'trezor', connectionKind: 'trezor' },
-  { iconName: 'gnosis_safe', connectionKind: 'gnosisSafe' },
-]
-
-const isFirefox = browserDetect().name === 'firefox'
-if (!isFirefox) {
-  SUPPORTED_WALLETS.push({ iconName: 'ledger', connectionKind: 'ledger' })
-}
+const SUPPORTED_WALLETS: SupportedWallet[] = [{ iconName: 'xdc', connectionKind: 'injected' }]
 
 function ConnectWalletButtonWrapper({
   children,
@@ -231,7 +218,7 @@ export function getInjectedWalletKind() {
 
   if (w.imToken) return 'IMToken'
 
-  if (w.ethereum?.isMetaMask) return 'MetaMask'
+  if (w.ethereum?.isMetaMask) return 'XDCPay'
 
   if (!w.web3 || typeof w.web3.currentProvider === 'undefined') return undefined
 

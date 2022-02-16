@@ -1,6 +1,7 @@
 import { BigNumber } from 'bignumber.js'
 import { Context, every10Seconds$ } from 'blockchain/network'
 import { zero } from 'helpers/zero'
+import getConfig from 'next/config'
 import { bindNodeCallback, combineLatest, forkJoin, iif, Observable, of } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
 import {
@@ -32,24 +33,24 @@ export function createGasPrice$(
   )
 }
 
-const tradingTokens = ['DAI', 'ETH']
+const tradingTokens = ['ETH']
+
+const basePath = getConfig()?.publicRuntimeConfig?.basePath || ''
 
 export const tokenPricesInUSD$: Observable<Ticker> = every10Seconds$.pipe(
   switchMap(() =>
     forkJoin(
       tradingTokens.map((token) =>
         ajax({
-          url: `https://api.pro.coinbase.com/products/${getToken(token).coinbaseTicker}/book`,
+          url: `${basePath}/api/ticker?symbol=${getToken(token).kucoinTicker}`,
           method: 'GET',
           headers: {
             Accept: 'application/json',
           },
         }).pipe(
           map(({ response }) => {
-            const bid = new BigNumber(response.bids[0][0])
-            const ask = new BigNumber(response.asks[0][0])
             return {
-              [token]: bid.plus(ask).div(2),
+              [token]: new BigNumber(response?.data?.price ?? 0),
             }
           }),
           catchError((error) => {

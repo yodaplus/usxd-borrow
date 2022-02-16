@@ -32,6 +32,7 @@ const tokens = [
     iconColor: 'ether_color',
     ticker: 'eth-ethereum',
     coinbaseTicker: 'eth-usdc',
+    kucoinTicker: 'XDC-USDT',
     color: '#667FE3',
     background:
       'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 100%), linear-gradient(284.73deg, #C993FF 3.42%, #4962E1 97.28%), linear-gradient(284.73deg, #9658D3 3.42%, #415FFF 97.28%)',

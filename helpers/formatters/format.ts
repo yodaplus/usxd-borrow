@@ -78,8 +78,8 @@ export function formatFiatBalance(amount: BigNumber): string {
   return formatAsShorthandNumbers(amount, 2)
 }
 
-export function formatAmount(amount: BigNumber, token: string): string {
-  const digits = token === 'USD' ? 2 : getToken(token).digits
+export function formatAmount(amount: BigNumber, token: string, digitsOverride?: number): string {
+  const digits = digitsOverride ?? (token === 'USD' ? 2 : getToken(token).digits)
   return amount.toFormat(digits, BigNumber.ROUND_DOWN)
 }
 

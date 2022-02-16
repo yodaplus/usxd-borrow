@@ -280,40 +280,46 @@ export function doGasEstimation<S extends HasGasEstimation>(
 ): Observable<S> {
   return combineLatest(gasPrice$, tokenPricesInUSD$, txHelpers$).pipe(
     first(),
-    switchMap(([gasPrice, { ETH: ETHUsd, DAI: DAIUsd }, txHelpers]) => {
-      if (state.gasEstimationStatus !== GasEstimationStatus.unset) {
-        return of(state)
-      }
+    switchMap(
+      ([
+        gasPrice,
+        { ETH: ETHUsd = new BigNumber(0), DAI: DAIUsd = new BigNumber(1) },
+        txHelpers,
+      ]) => {
+        if (state.gasEstimationStatus !== GasEstimationStatus.unset) {
+          return of(state)
+        }
 
-      const { gasEstimationEth, gasEstimationUsd, ...stateWithoutGasEstimation } = state
+        const { gasEstimationEth, gasEstimationUsd, ...stateWithoutGasEstimation } = state
 
-      const gasCall = call(txHelpers, state)
+        const gasCall = call(txHelpers, state)
 
-      if (!gasPrice || !gasCall) {
-        return of({
-          ...stateWithoutGasEstimation,
-          gasEstimationStatus: GasEstimationStatus.unset,
-        } as S)
-      }
+        if (!gasPrice || !gasCall) {
+          return of({
+            ...stateWithoutGasEstimation,
+            gasEstimationStatus: GasEstimationStatus.unset,
+          } as S)
+        }
 
-      return gasCall.pipe(
-        map((gasEstimation: number) => {
-          const gasCost = amountFromWei(gasPrice.times(gasEstimation))
-          const gasEstimationUsd = ETHUsd ? gasCost.times(ETHUsd) : undefined
-          const gasEstimationDai =
-            gasEstimationUsd && DAIUsd ? gasEstimationUsd.div(DAIUsd) : undefined
+        return gasCall.pipe(
+          map((gasEstimation: number) => {
+            const gasCost = amountFromWei(gasPrice.times(gasEstimation))
+            const gasEstimationUsd = ETHUsd ? gasCost.times(ETHUsd) : undefined
+            const gasEstimationDai =
+              gasEstimationUsd && DAIUsd ? gasEstimationUsd.div(DAIUsd) : undefined
 
-          return {
-            ...state,
-            gasEstimation,
-            gasEstimationStatus: GasEstimationStatus.calculated,
-            gasEstimationEth: gasCost,
-            gasEstimationUsd,
-            gasEstimationDai,
-          }
-        }),
-      )
-    }),
+            return {
+              ...state,
+              gasEstimation,
+              gasEstimationStatus: GasEstimationStatus.calculated,
+              gasEstimationEth: gasCost,
+              gasEstimationUsd,
+              gasEstimationDai,
+            }
+          }),
+        )
+      },
+    ),
     catchError((error) => {
       console.warn('Error while estimating gas:', error.toString())
       return of({

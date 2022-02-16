@@ -61,7 +61,7 @@ export function getEstimatedGasFeeText(
 
       return <Text sx={{ color: 'onError' }}>{withBrackets ? `(${textError})` : textError}</Text>
     case GasEstimationStatus.calculated:
-      const textGas = `$${formatAmount(gasEstimationUsd as BigNumber, 'USD')}`
+      const textGas = `$${formatAmount(gasEstimationUsd as BigNumber, 'USD', 7)}`
 
       return withBrackets ? `(${textGas})` : textGas
   }

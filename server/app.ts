@@ -4,6 +4,7 @@ import express from 'express'
 import basicAuth from 'express-basic-auth'
 import jwt from 'express-jwt'
 import morgan from 'morgan'
+import fetch from 'node-fetch'
 
 import { Config } from './config'
 import { jwtAuthMiddleware } from './middleware/signature-auth'
@@ -57,6 +58,19 @@ export function getApp(config: Config, { nextHandler }: Dependencies): express.A
     jwt({ secret: config.userJWTSecret, algorithms: ['HS512'] }),
     createOrUpdate,
   )
+
+  app.get(`${path}/api/ticker`, (req, res) => {
+    fetch(`https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=${req.query.symbol}`, {
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((resJSON) => res.status(200).send(resJSON))
+      .catch((error) => {
+        res.status(500).send(error.message)
+      })
+  })
 
   app.get(`${path}/api/vaults/`, getMultipleVaults)
 

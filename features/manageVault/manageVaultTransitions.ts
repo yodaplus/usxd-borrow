@@ -151,7 +151,7 @@ export function applyManageVaultTransition(
       daiAllowance && paybackAmount && daiAllowance.gte(paybackAmount.plus(debtOffset))
 
     const hasCollateralAllowance =
-      token === 'ETH' ? true : depositAmountLessThanCollateralAllowance || isDepositZero
+      token === 'XDC' ? true : depositAmountLessThanCollateralAllowance || isDepositZero
 
     const hasDaiAllowance = paybackAmountLessThanDaiAllowance || isPaybackZero
 
@@ -186,7 +186,7 @@ export function applyManageVaultTransition(
     const paybackAmountLessThanDaiAllowance =
       daiAllowance && paybackAmount && daiAllowance.gte(paybackAmount.plus(debtOffset))
     const hasCollateralAllowance =
-      token === 'ETH' ? true : depositAmountLessThanCollateralAllowance || isDepositZero
+      token === 'XDC' ? true : depositAmountLessThanCollateralAllowance || isDepositZero
     const hasDaiAllowance = paybackAmountLessThanDaiAllowance || isPaybackZero
 
     if (!hasCollateralAllowance) {

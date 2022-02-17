@@ -34,7 +34,7 @@ export function applyManageVaultStageCategorisation(state: ManageVaultState) {
     daiAllowance && paybackAmount && daiAllowance.gte(paybackAmount.plus(debtOffset))
 
   const hasCollateralAllowance =
-    token === 'ETH' ? true : depositAmountLessThanCollateralAllowance || isDepositZero
+    token === 'XDC' ? true : depositAmountLessThanCollateralAllowance || isDepositZero
 
   const hasDaiAllowance = paybackAmountLessThanDaiAllowance || isPaybackZero
 
@@ -68,7 +68,7 @@ export function applyManageVaultStageCategorisation(state: ManageVaultState) {
         ...defaultManageVaultStageCategories,
         isProxyStage: true,
         totalSteps,
-        currentStep: totalSteps - (token === 'ETH' ? 1 : 2),
+        currentStep: totalSteps - (token === 'XDC' ? 1 : 2),
       }
     case 'collateralAllowanceWaitingForConfirmation':
     case 'collateralAllowanceWaitingForApproval':
@@ -299,7 +299,7 @@ export function applyManageVaultConditions(state: ManageVaultState): ManageVault
 
   const depositAmountExceedsCollateralBalance = !!depositAmount?.gt(collateralBalance)
 
-  const depositingAllEthBalance = vault.token === 'ETH' && !!depositAmount?.eq(collateralBalance)
+  const depositingAllEthBalance = vault.token === 'XDC' && !!depositAmount?.eq(collateralBalance)
 
   const withdrawAmountExceedsFreeCollateral = !!withdrawAmount?.gt(maxWithdrawAmountAtCurrentPrice)
 
@@ -361,7 +361,7 @@ export function applyManageVaultConditions(state: ManageVaultState): ManageVault
   )
 
   const insufficientCollateralAllowance =
-    vault.token !== 'ETH' &&
+    vault.token !== 'XDC' &&
     !!(
       depositAmount &&
       !depositAmount.isZero() &&

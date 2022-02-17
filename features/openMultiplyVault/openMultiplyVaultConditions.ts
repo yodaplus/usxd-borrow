@@ -17,7 +17,7 @@ export function applyOpenVaultStageCategorisation(state: OpenMultiplyVaultState)
   const openingEmptyVault = depositAmount ? depositAmount.eq(zero) : true
   const depositAmountLessThanAllowance = allowance && depositAmount && allowance.gte(depositAmount)
 
-  const hasAllowance = token === 'ETH' ? true : depositAmountLessThanAllowance || openingEmptyVault
+  const hasAllowance = token === 'XDC' ? true : depositAmountLessThanAllowance || openingEmptyVault
 
   const totalSteps = !hasAllowance && state.totalSteps < 3 ? state.totalSteps + 1 : state.totalSteps
 
@@ -40,7 +40,7 @@ export function applyOpenVaultStageCategorisation(state: OpenMultiplyVaultState)
         ...defaultOpenVaultStageCategories,
         isProxyStage: true,
         totalSteps,
-        currentStep: totalSteps - (token === 'ETH' ? 1 : 2),
+        currentStep: totalSteps - (token === 'XDC' ? 1 : 2),
       }
     case 'allowanceWaitingForConfirmation':
     case 'allowanceWaitingForApproval':
@@ -204,7 +204,7 @@ export function applyOpenVaultConditions(state: OpenMultiplyVaultState): OpenMul
       !afterCollateralizationRatioAtNextPrice.isZero()
     )
 
-  const depositingAllEthBalance = token === 'ETH' && !!depositAmount?.eq(collateralBalance)
+  const depositingAllEthBalance = token === 'XDC' && !!depositAmount?.eq(collateralBalance)
   const depositAmountExceedsCollateralBalance = !!depositAmount?.gt(collateralBalance)
 
   const generateAmountExceedsDaiYieldFromDepositingCollateral = !!afterOutstandingDebt?.gt(
@@ -247,7 +247,7 @@ export function applyOpenVaultConditions(state: OpenMultiplyVaultState): OpenMul
   )
 
   const insufficientAllowance =
-    token !== 'ETH' &&
+    token !== 'XDC' &&
     !!(depositAmount && !depositAmount.isZero() && (!allowance || depositAmount.gt(allowance)))
 
   const isExchangeLoading = !quote && !swap && !exchangeError

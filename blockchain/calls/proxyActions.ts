@@ -34,7 +34,7 @@ export function getWithdrawAndPaybackCallData(
   const { id, token, withdrawAmount, paybackAmount, ilk, shouldPaybackAll } = data
 
   if (withdrawAmount.gt(zero) && paybackAmount.gt(zero)) {
-    if (token === 'ETH') {
+    if (token === 'XDC') {
       if (shouldPaybackAll) {
         return contract<DssProxyActions>(dssProxyActions).methods.wipeAllAndFreeETH(
           dssCdpManager.address,
@@ -76,7 +76,7 @@ export function getWithdrawAndPaybackCallData(
   }
 
   if (withdrawAmount.gt(zero)) {
-    if (token === 'ETH') {
+    if (token === 'XDC') {
       return contract<DssProxyActions>(dssProxyActions).methods.freeETH(
         dssCdpManager.address,
         joins[ilk],
@@ -138,7 +138,7 @@ function getDepositAndGenerateCallData(data: DepositAndGenerateData, context: Co
   const { id, token, depositAmount, generateAmount, ilk } = data
 
   if (depositAmount.gt(zero) && generateAmount.gt(zero)) {
-    if (token === 'ETH') {
+    if (token === 'XDC') {
       return contract<DssProxyActions>(dssProxyActions).methods.lockETHAndDraw(
         dssCdpManager.address,
         mcdJug.address,
@@ -161,7 +161,7 @@ function getDepositAndGenerateCallData(data: DepositAndGenerateData, context: Co
   }
 
   if (depositAmount.gt(zero)) {
-    if (token === 'ETH') {
+    if (token === 'XDC') {
       return contract<DssProxyActions>(dssProxyActions).methods.lockETH(
         dssCdpManager.address,
         joins[ilk],
@@ -196,7 +196,7 @@ export const depositAndGenerate: TransactionDef<DepositAndGenerateData> = {
     return [dssProxyActions.address, getDepositAndGenerateCallData(data, context).encodeABI()]
   },
   options: ({ token, depositAmount }) =>
-    token === 'ETH' ? { value: amountToWei(depositAmount, 'ETH').toString() } : {},
+    token === 'XDC' ? { value: amountToWei(depositAmount, 'ETH').toString() } : {},
 }
 
 export type OpenData = {
@@ -213,7 +213,7 @@ function getOpenCallData(data: OpenData, context: ContextConnected) {
   const { depositAmount, generateAmount, token, ilk, proxyAddress } = data
 
   if (depositAmount.gt(zero) && generateAmount.gt(zero)) {
-    if (token === 'ETH') {
+    if (token === 'XDC') {
       return contract<DssProxyActions>(dssProxyActions).methods.openLockETHAndDraw(
         dssCdpManager.address,
         mcdJug.address,
@@ -237,7 +237,7 @@ function getOpenCallData(data: OpenData, context: ContextConnected) {
   }
 
   if (depositAmount.gt(zero) && generateAmount.isZero()) {
-    if (token === 'ETH') {
+    if (token === 'XDC') {
       return contract<DssProxyActions>(dssProxyActions).methods.openLockETHAndDraw(
         dssCdpManager.address,
         mcdJug.address,
@@ -276,7 +276,7 @@ export const open: TransactionDef<OpenData> = {
     return [dssProxyActions.address, getOpenCallData(data, context).encodeABI()]
   },
   options: ({ token, depositAmount }) =>
-    token === 'ETH' ? { value: amountToWei(depositAmount, 'ETH').toString() } : {},
+    token === 'XDC' ? { value: amountToWei(depositAmount, 'ETH').toString() } : {},
 }
 
 export type OpenMultiplyData = {
@@ -351,7 +351,7 @@ export const openMultiplyVault: TransactionDef<OpenMultiplyData> = {
     return [dssMultiplyProxyActions.address, getOpenMultiplyCallData(data, context).encodeABI()]
   },
   options: ({ token, depositCollateral }) =>
-    token === 'ETH' ? { value: amountToWei(depositCollateral, 'ETH').toFixed(0) } : {},
+    token === 'XDC' ? { value: amountToWei(depositCollateral, 'ETH').toFixed(0) } : {},
 }
 
 export type ReclaimData = {
@@ -504,7 +504,7 @@ export const adjustMultiplyVault: TransactionDef<MultiplyAdjustData> = {
     return [dssMultiplyProxyActions.address, getMultiplyAdjustCallData(data, context).encodeABI()]
   },
   options: ({ token, depositCollateral }) =>
-    token === 'ETH' ? { value: amountToWei(depositCollateral, token).toFixed(0) } : {},
+    token === 'XDC' ? { value: amountToWei(depositCollateral, token).toFixed(0) } : {},
 }
 
 export type CloseVaultData = {

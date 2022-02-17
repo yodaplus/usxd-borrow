@@ -40,7 +40,7 @@ export function applyOpenVaultTransition(
       allowance && depositAmount && allowance.gte(depositAmount)
 
     const hasAllowance =
-      state.token === 'ETH' ? true : depositAmountLessThanAllowance || openingEmptyVault
+      state.token === 'XDC' ? true : depositAmountLessThanAllowance || openingEmptyVault
 
     const stage = !hasProxy
       ? 'proxyWaitingForConfirmation'
@@ -58,7 +58,7 @@ export function applyOpenVaultTransition(
   if (change.kind === 'progressProxy') {
     return {
       ...state,
-      stage: state.token === 'ETH' ? 'editing' : 'allowanceWaitingForConfirmation',
+      stage: state.token === 'XDC' ? 'editing' : 'allowanceWaitingForConfirmation',
     }
   }
 

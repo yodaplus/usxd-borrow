@@ -389,8 +389,8 @@ export function VaultDetailsCardLiquidationPrice({
   return (
     <VaultDetailsCard
       title={t('system.liquidation-price')}
-      value={`$${formatAmount(liquidationPrice, 'USD')}`}
-      valueAfter={showAfterPill && `$${formatAmount(afterLiquidationPrice || zero, 'USD')}`}
+      value={`$${formatAmount(liquidationPrice, 'USD', 5)}`}
+      valueAfter={showAfterPill && `$${formatAmount(afterLiquidationPrice || zero, 'USD', 5)}`}
       valueBottom={
         liquidationPriceCurrentPriceDifference && (
           <>
@@ -429,7 +429,7 @@ export function VaultDetailsCardCurrentPrice(props: CommonVaultState) {
   const openModal = useModal()
   const priceChangeColor = getPriceChangeColor(props)
 
-  const currentPrice = `$${formatAmount(currentCollateralPrice, 'USD')}`
+  const currentPrice = `$${formatAmount(currentCollateralPrice, 'USD', 5)}`
   const nextPriceWithChange = (
     <>
       <Text>${formatAmount(nextCollateralPrice, 'USD')}</Text>

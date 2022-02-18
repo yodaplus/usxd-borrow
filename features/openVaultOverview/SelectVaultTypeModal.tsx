@@ -1,4 +1,5 @@
 import { BigNumber } from 'bignumber.js'
+import { FeatureToggle } from 'components/FeatureToggle'
 import { AppLink } from 'components/Links'
 import { Modal, ModalCloseIcon } from 'components/Modal'
 import { ModalProps } from 'helpers/modalHook'
@@ -28,28 +29,29 @@ export function SelectVaultTypeModal({ ilk, token, liquidationRatio, close }: Mo
             {t('select-vault-type.header', { token })}
           </Text>
         </Box>
-        <Box>
-          <Text variant="paragraph2" sx={{ fontWeight: 'semiBold', mb: 2 }}>
-            {t('select-vault-type.multiply.header', { token })}
-          </Text>
-          <Text variant="paragraph3" sx={{ color: 'text.muted', mb: '24px' }}>
-            {t('select-vault-type.multiply.subtext', {
-              exposureMultiplier,
-              token,
-            })}
-          </Text>
-          <Box onClick={close}>
-            <AppLink
-              variant="primary"
-              href={`/vaults/open-multiply/${ilk}`}
-              sx={{ display: 'block', textAlign: 'center', mb: 3 }}
-            >
-              {t('select-vault-type.multiply.button', { token })}
-            </AppLink>
+        <FeatureToggle f="multiply">
+          <Box>
+            <Text variant="paragraph2" sx={{ fontWeight: 'semiBold', mb: 2 }}>
+              {t('select-vault-type.multiply.header', { token })}
+            </Text>
+            <Text variant="paragraph3" sx={{ color: 'text.muted', mb: '24px' }}>
+              {t('select-vault-type.multiply.subtext', {
+                exposureMultiplier,
+                token,
+              })}
+            </Text>
+            <Box onClick={close}>
+              <AppLink
+                variant="primary"
+                href={`/vaults/open-multiply/${ilk}`}
+                sx={{ display: 'block', textAlign: 'center', mb: 3 }}
+              >
+                {t('select-vault-type.multiply.button', { token })}
+              </AppLink>
+            </Box>
           </Box>
-        </Box>
-        <Divider />
-
+          <Divider />
+        </FeatureToggle>
         <Box>
           <Text variant="paragraph2" sx={{ fontWeight: 'semiBold', mb: 2 }}>
             {t('select-vault-type.borrow.header', { token })}

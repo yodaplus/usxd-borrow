@@ -381,24 +381,6 @@ function DisconnectedHeader() {
             <Logo
               sx={{ transform: 'scale(85%)', display: 'inline-flex', '& *': { flexShrink: 0 } }}
             />
-            <HeaderDropdown title={t('nav.products')}>
-              <AppLink
-                variant="links.nav"
-                sx={{ fontWeight: 'body' }}
-                href={HEADER_LINKS['dai-wallet']}
-              >
-                {t('nav.dai-wallet')}
-              </AppLink>
-              <Text variant="links.nav" sx={{ cursor: 'default', ':hover': { color: 'primary' } }}>
-                {t('nav.borrow')}
-              </Text>
-            </HeaderDropdown>
-            <AppLink variant="links.navHeader" href={HEADER_LINKS['learn']}>
-              {t('nav.learn')}
-            </AppLink>
-            <AppLink variant="links.navHeader" href={HEADER_LINKS['blog']}>
-              {t('nav.blog')}
-            </AppLink>
           </Grid>
           <Grid sx={{ alignItems: 'center', columnGap: 3, gridAutoFlow: 'column' }}>
             <AppLink

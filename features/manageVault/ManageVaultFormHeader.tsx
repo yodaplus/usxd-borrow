@@ -1,4 +1,5 @@
 import { trackingEvents } from 'analytics/analytics'
+import { FeatureToggle } from 'components/FeatureToggle'
 import { WithVaultFormStepIndicator } from 'components/vault/VaultForm'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
@@ -53,9 +54,14 @@ function ManageVaultEditingController({
         <Button onClick={() => handleToggle('daiEditing')} variant={daiVariant}>
           {t('system.dai')}
         </Button>
-        <Button onClick={() => handleToggle('multiplyTransitionEditing')} variant={multiplyVariant}>
-          Multiply
-        </Button>
+        <FeatureToggle f="multiply">
+          <Button
+            onClick={() => handleToggle('multiplyTransitionEditing')}
+            variant={multiplyVariant}
+          >
+            Multiply
+          </Button>
+        </FeatureToggle>
       </Grid>
       {isEditingStage && (
         <WithVaultFormStepIndicator {...{ totalSteps, currentStep }}>

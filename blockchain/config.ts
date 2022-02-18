@@ -90,6 +90,7 @@ const protoMain = {
     apiKey: '',
   },
   cacheApi: 'https://oazo-bcache-goerli-staging.new.oasis.app/api/v1',
+  features: new Set<'multiply'>([]),
 }
 
 export type NetworkConfig = typeof protoMain

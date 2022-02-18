@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Context } from 'blockchain/network'
 import { CoinTag, getToken } from 'blockchain/tokensMetadata'
 import { Vault } from 'blockchain/vaults'
+import { FeatureToggle } from 'components/FeatureToggle'
 import { AppLink } from 'components/Links'
 import { ColumnDef, Table, TableSortHeader } from 'components/Table'
 import { VaultOverviewOwnershipBanner } from 'features/banners/VaultsBannersView'
@@ -485,7 +486,9 @@ export function VaultsOverviewView({ vaultsOverview, context, address }: Props) 
           <Summary summary={vaultSummary} />
           <Grid gap={5}>
             <VaultsOverwiewPerType vaults={vaults.borrow} heading="Borrow Vaults" />
-            <VaultsOverwiewPerType vaults={vaults.multiply} heading="Multiply Vaults" multiply />
+            <FeatureToggle f="multiply">
+              <VaultsOverwiewPerType vaults={vaults.multiply} heading="Multiply Vaults" multiply />
+            </FeatureToggle>
           </Grid>
         </>
       )}

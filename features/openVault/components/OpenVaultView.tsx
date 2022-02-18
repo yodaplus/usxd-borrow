@@ -1,6 +1,7 @@
 import { trackingEvents } from 'analytics/analytics'
 import { ALLOWED_MULTIPLY_TOKENS } from 'blockchain/tokensMetadata'
 import { useAppContext } from 'components/AppContextProvider'
+import { FeatureToggle } from 'components/FeatureToggle'
 import { VaultAllowance, VaultAllowanceStatus } from 'components/vault/VaultAllowance'
 import { VaultChangesWithADelayCard } from 'components/vault/VaultChangesWithADelayCard'
 import { VaultFormVaultTypeSwitch, WithVaultFormStepIndicator } from 'components/vault/VaultForm'
@@ -79,13 +80,15 @@ function OpenVaultForm(props: OpenVaultState) {
       {isProxyStage && <VaultProxyStatusCard {...props} />}
       {isAllowanceStage && <VaultAllowanceStatus {...props} />}
       {isOpenStage && <OpenVaultStatus {...props} />}
-      {isEditingStage ? (
-        <VaultFormVaultTypeSwitch
-          href={`/vaults/open-multiply/${ilk}`}
-          title="Switch to Multiply"
-          visible={ALLOWED_MULTIPLY_TOKENS.includes(props.token)}
-        />
-      ) : null}
+      <FeatureToggle f="multiply">
+        {isEditingStage ? (
+          <VaultFormVaultTypeSwitch
+            href={`/vaults/open-multiply/${ilk}`}
+            title="Switch to Multiply"
+            visible={ALLOWED_MULTIPLY_TOKENS.includes(props.token)}
+          />
+        ) : null}
+      </FeatureToggle>
     </VaultFormContainer>
   )
 }

@@ -9,6 +9,7 @@ import { useSharedUI } from 'components/SharedUIProvider'
 import { formatAddress, formatCryptoBalance } from 'helpers/formatters/format'
 import { ModalProps, useModal } from 'helpers/modalHook'
 import { useObservable } from 'helpers/observableHook'
+import { ethToXdcAddress } from 'helpers/xinfin'
 import { useTranslation } from 'next-i18next'
 import React, { useRef } from 'react'
 // @ts-ignore
@@ -225,7 +226,7 @@ export function AccountModal({ close }: ModalProps) {
                   sx={{ mr: 3 }}
                   onClick={close}
                   href="/owner/[address]"
-                  as={`/owner/${account}`}
+                  as={`/owner/${ethToXdcAddress(account)}`}
                 >
                   {t('your-vaults')}{' '}
                   {accountData?.numberOfVaults !== undefined && `(${accountData.numberOfVaults})`}

@@ -7,6 +7,7 @@ import { ReclaimCollateralButton } from 'features/reclaimCollateral/reclaimColla
 import { formatAddress, formatCryptoBalance } from 'helpers/formatters/format'
 import { useObservable } from 'helpers/observableHook'
 import { WithChildren } from 'helpers/types'
+import { ethToXdcAddress } from 'helpers/xinfin'
 import { zero } from 'helpers/zero'
 import moment from 'moment'
 import { useTranslation } from 'next-i18next'
@@ -143,7 +144,7 @@ export function VaultOwnershipBanner({
         ) : (
           <Text>
             {t('vault-banners.ownership.subheader2')}{' '}
-            <AppLink href={`/owner/${account}`} target="_blank">
+            <AppLink href={`/owner/${ethToXdcAddress(account)}`} target="_blank">
               {t('here')}
             </AppLink>
           </Text>
@@ -174,7 +175,7 @@ export function VaultOverviewOwnershipBanner({
       subheader={
         <Text>
           {t('vaults-overview.banner-content')}{' '}
-          <AppLink href={`/owner/${account}`} target="_blank">
+          <AppLink href={`/owner/${ethToXdcAddress(account)}`} target="_blank">
             {t('here')}
           </AppLink>
         </Text>

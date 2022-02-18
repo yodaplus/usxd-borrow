@@ -48,7 +48,7 @@
   "compound": "Compound",
   "confirm": "Confirm",
   "confirmed-proxy-deployment": "Proxy deployment confirmed",
-  "connect-confirm": "Confirm in {{ connectionKind }}",
+  "connect-confirm": "Connecting...",
   "connect-email": "Connect with email",
   "connect-error": "Please authorize this website to access your Ethereum account.",
   "connect-wallet": "Connect a wallet",

@@ -15,7 +15,6 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { dappName, networksById, pollingInterval } from 'blockchain/config'
 import { InjectedConnector } from 'blockchain/InjectedConnector'
-import browserDetect from 'browser-detect'
 import { useAppContext } from 'components/AppContextProvider'
 import { LedgerAccountSelection } from 'components/connectWallet/LedgerAccountSelection'
 import { TrezorAccountSelection } from 'components/connectWallet/TrezorAccountSelection'
@@ -25,6 +24,7 @@ import { AppSpinner } from 'helpers/AppSpinner'
 import { useObservable } from 'helpers/observableHook'
 import { WithChildren } from 'helpers/types'
 import { useRedirect } from 'helpers/useRedirect'
+import { ethToXdcAddress } from 'helpers/xinfin'
 import { mapValues } from 'lodash'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect } from 'react'
@@ -283,7 +283,7 @@ export function ConnectWallet() {
           replace(url)
           redirectState$.next(undefined)
         } else {
-          replace(`/owner/${web3Context.account}`)
+          replace(`/owner/${ethToXdcAddress(web3Context.account)}`)
         }
       }
     })

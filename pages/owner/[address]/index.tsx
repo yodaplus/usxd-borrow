@@ -6,6 +6,7 @@ import { VaultsOverviewView } from 'features/vaultsOverview/VaultsOverviewView'
 import { WithLoadingIndicator } from 'helpers/AppSpinner'
 import { WithErrorHandler } from 'helpers/errorHandlers/WithErrorHandler'
 import { useObservableWithError } from 'helpers/observableHook'
+import { xdcToEthAddress } from 'helpers/xinfin'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 import { BackgroundLight } from 'theme/BackgroundLight'
@@ -14,6 +15,7 @@ import { WithTermsOfService } from '../../../features/termsOfService/TermsOfServ
 
 // TODO Move this to /features
 function Summary({ address }: { address: string }) {
+  address = xdcToEthAddress(address)
   const { vaultsOverview$, context$ } = useAppContext()
   const checksumAddress = getAddress(address.toLocaleLowerCase())
   const vaultsOverviewWithError = useObservableWithError(vaultsOverview$(checksumAddress))

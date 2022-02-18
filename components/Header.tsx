@@ -8,6 +8,7 @@ import { AccountButton } from 'features/account/Account'
 import { useObservable } from 'helpers/observableHook'
 import { staticFilesRuntimeUrl } from 'helpers/staticPaths'
 import { WithChildren } from 'helpers/types'
+import { ethToXdcAddress } from 'helpers/xinfin'
 import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 import { useRouter } from 'next/router'
@@ -90,6 +91,7 @@ function ConnectedHeader() {
   const { t } = useTranslation()
   const accountData = useObservable(accountData$)
   const context = useObservable(context$)
+  const account = (context as any)?.account
 
   const numberOfVaults =
     accountData?.numberOfVaults !== undefined ? accountData.numberOfVaults : undefined
@@ -111,7 +113,7 @@ function ConnectedHeader() {
             variant="nav"
             sx={{ mr: 4 }}
             // @ts-ignore
-            href={`/owner/${context?.account}`}
+            href={`/owner/${account && ethToXdcAddress(account)}`}
             onClick={() => trackingEvents.yourVaults()}
           >
             {t('your-vaults')} {numberOfVaults ? numberOfVaults > 0 && `(${numberOfVaults})` : ''}

@@ -539,7 +539,7 @@
   },
   "view": "View",
   "view-more": "View more",
-  "view-on-etherscan": "View on Etherscan",
+  "view-on-etherscan": "View on Blocksscan",
   "waiting-approval": "Waiting for approval",
   "waiting-confirmation": "Waiting for transaction confirmation",
   "proxy-deployment-confirming": "{{proxyConfirmations}} of {{safeConfirmations}}: Proxy deployment confirmed",

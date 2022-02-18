@@ -80,9 +80,9 @@ const protoMain = {
   // Currently this is not supported on Goerli - no deployed contract
   fmm: apothemAddresses.MCD_FLASH,
   etherscan: {
-    url: 'https://goerli.etherscan.io',
-    apiUrl: 'https://api-goerli.etherscan.io/api',
-    apiKey: etherscanAPIKey || '',
+    url: 'https://apothem.blocksscan.io',
+    apiUrl: '',
+    apiKey: '',
   },
   taxProxyRegistries: [apothemAddresses.PROXY_REGISTRY],
   dssProxyActionsDsr: contractDesc(dssProxyActionsDsr, apothemAddresses.PROXY_ACTIONS_DSR),

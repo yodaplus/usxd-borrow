@@ -21,7 +21,7 @@ export function TxStatusCardProgress({
           <Text variant="paragraph3" color="onWarning">
             {text}
           </Text>
-          <Link href={`${etherscan}/tx/${txHash}`} target="_blank" rel="noopener noreferrer">
+          <Link href={`${etherscan}/txs/${txHash}`} target="_blank" rel="noopener noreferrer">
             <Text variant="paragraph4" sx={{ fontWeight: 'semiBold' }} color="onWarning">
               {t('view-on-etherscan')}
             </Text>

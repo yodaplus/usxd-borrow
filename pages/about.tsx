@@ -25,17 +25,7 @@ export default function AboutPage({ members }: { members: TeamMember[] }) {
         >
           {t('about.heading')}
         </Heading>
-        <Text variant="light">{t('about.description')}</Text>
       </Box>
-      <AppLink
-        href="/careers"
-        sx={{ color: 'text.focused', display: 'flex', alignItems: 'center', mt: 3 }}
-      >
-        <Text variant="paragraph1" sx={{ color: 'text.focused', fontWeight: 'semiBold' }}>
-          {t('about.careers-link')}
-        </Text>
-        <Icon name="arrow_right" size="16px" sx={{ ml: 1 }} />
-      </AppLink>
       <Box sx={{ mt: 4 }}>
         <Heading variant="header2">{t('about.pics-title')}</Heading>
         <PortraitsGrid members={members} />

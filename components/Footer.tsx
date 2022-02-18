@@ -12,43 +12,21 @@ import { Box, Card, Container, Flex, Grid, Image, Link, Text } from 'theme-ui'
 import { SelectComponents } from 'react-select/src/components'
 
 const {
-  publicRuntimeConfig: { buildHash, buildDate, showBuildInfo, apiHost },
+  publicRuntimeConfig: { buildHash, buildDate, showBuildInfo },
 } = getConfig()
 
 const FOOTER_SECTIONS = [
   {
     titleKey: 'nav.about',
-    links: [
-      { labelKey: 'nav.team', url: '/about' },
-      { labelKey: 'nav.careers', url: '/careers' },
-      { labelKey: 'nav.privacy', url: '/privacy' },
-      { labelKey: 'nav.terms', url: '/terms' },
-      { labelKey: 'nav.contact', url: `${apiHost}/daiwallet/contact` },
-    ],
+    links: [],
   },
   {
     titleKey: 'nav.resources',
-    links: [
-      { labelKey: 'nav.blog', url: 'https://blog.oasis.app', target: '_self' },
-      {
-        labelKey: 'nav.faq',
-        url: '/support',
-      },
-      // add link
-      // { labelKey: 'nav.knowledge-centre', url: '/' },
-      { labelKey: 'nav.oracles', url: '/oracles' },
-    ],
+    links: [{ labelKey: 'nav.oracles', url: '/oracles', target: undefined }],
   },
   {
     titleKey: 'nav.products',
-    links: [
-      {
-        labelKey: 'nav.dai-wallet',
-        url: `${apiHost}/daiwallet`,
-        target: '_self',
-      },
-      { labelKey: 'nav.borrow', url: '/' },
-    ],
+    links: [{ labelKey: 'nav.borrow', url: '/', target: undefined }],
   },
 ]
 
@@ -155,15 +133,9 @@ export function Footer() {
           gap={[4, null, 5]}
         >
           <Grid gap={3}>
-            <Image src={staticFilesRuntimeUrl('/static/img/logo_footer.svg')} />
+            <Image src={staticFilesRuntimeUrl('/static/img/yodaplus-logo-wide.png')} />
             <Flex sx={{ alignItems: 'center', a: { fontSize: '0px' }, my: 2 }}>
-              <AppLink href="https://twitter.com/oasisdotapp">
-                <Icon name="twitter" size="auto" width="18px" height="16px" />
-              </AppLink>
-              <AppLink href="https://discord.gg/Kc2bBB59GC" sx={{ mx: 3 }}>
-                <Icon name="discord" size="auto" width="20px" height="23px" />
-              </AppLink>
-              <AppLink href="https://github.com/OasisDEX/oasis-borrow/">
+              <AppLink href="https://github.com/yodaplus/xusd-borrow">
                 <Icon name="github" size="auto" width="21px" />
               </AppLink>
             </Flex>

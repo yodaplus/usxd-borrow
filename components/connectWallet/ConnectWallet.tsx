@@ -400,28 +400,6 @@ export function ConnectWallet() {
             />
           )
         })}
-        <Box sx={{ mt: 4 }}>
-          <Text sx={{ fontWeight: 'semiBold', mb: 2 }} variant="paragraph2">
-            {t('new-to-ethereum')}
-          </Text>
-          <AppLink
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              transition: 'opacity ease-in 0.2s',
-              '&:hover': {
-                opacity: 0.7,
-              },
-            }}
-            href={t('learn-more-link')}
-          >
-            <Text variant="paragraph2" sx={{ color: 'inherit', fontWeight: 'semiBold' }}>
-              {t('learn-about-wallets')}
-            </Text>
-            <Icon sx={{ ml: 1 }} name="open_in_new_tab" />
-          </AppLink>
-        </Box>
       </Grid>
     </Grid>
   )

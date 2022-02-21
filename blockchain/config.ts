@@ -37,9 +37,6 @@ export function contractDesc(abi: any, address: string): ContractDesc {
   return { abi, address }
 }
 
-const etherscanAPIKey =
-  process.env.ETHERSCAN_API_KEY || getConfig()?.publicRuntimeConfig?.etherscan || ''
-
 const protoMain = {
   id: '51',
   name: 'apothem',
@@ -89,7 +86,7 @@ const protoMain = {
   magicLink: {
     apiKey: '',
   },
-  cacheApi: 'https://oazo-bcache-goerli-staging.new.oasis.app/api/v1',
+  cacheApi: '',
   features: new Set<'multiply'>([]),
 }
 
@@ -106,7 +103,7 @@ const hardhat: NetworkConfig = {
   label: 'Hardhat',
   infuraUrl: `http://localhost:8545`,
   infuraUrlWS: `ws://localhost:8545`,
-  cacheApi: 'http://localhost:3001/v1',
+  cacheApi: '',
   dssMultiplyProxyActions: contractDesc(
     dssMultiplyProxyActions,
     getConfig()?.publicRuntimeConfig?.multiplyProxyActions ||

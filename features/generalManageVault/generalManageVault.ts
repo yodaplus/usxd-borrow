@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { UnreachableCaseError } from 'helpers/UnreachableCaseError'
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { map, switchMap } from 'rxjs/operators'
 
 import { ManageMultiplyVaultState } from '../manageMultiplyVault/manageMultiplyVault'
@@ -29,7 +29,7 @@ export function createGeneralManageVault$(
   checkVaultType$: (id: BigNumber) => Observable<VaultType>,
   id: BigNumber,
 ): Observable<GeneralManageVaultState> {
-  return checkVaultType$(id).pipe(
+  return of(VaultType.Borrow).pipe(
     switchMap((type) => {
       switch (type) {
         case VaultType.Borrow:

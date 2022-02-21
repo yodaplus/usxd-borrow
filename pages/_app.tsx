@@ -25,7 +25,6 @@ import { components, ThemeProvider } from 'theme-ui'
 import Web3 from 'web3'
 
 import { trackingEvents } from '../analytics/analytics'
-import { mixpanelInit } from '../analytics/mixpanel'
 import nextI18NextConfig from '../next-i18next.config.js'
 
 function getLibrary(provider: any, connector: AbstractConnector | undefined): Web3 {
@@ -97,8 +96,6 @@ interface CustomAppProps {
     seoTags?: JSX.Element
   }
 }
-
-mixpanelInit()
 
 // script for disabling Next.js overlay for particular event errors
 // currently there is no option to configure error overlay in development mode

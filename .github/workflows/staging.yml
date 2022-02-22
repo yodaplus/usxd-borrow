@@ -57,6 +57,16 @@ jobs:
         run: |
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
+      - name: Build Nginx proxy
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/nginx/Dockerfile
+          push: true
+          tags: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xusd-borrow-nginx:latest
+          cache-from: type=local,src=/tmp/.buildx-cache-nginx
+          cache-to: type=local,dest=/tmp/.buildx-cache-nginx-new,mode=max
+
       - name: Build Next.js app
         env:
           SHA_TAG: ${{ steps.vars.outputs.sha_short }}
@@ -77,16 +87,6 @@ jobs:
           tags: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xusd-borrow-nextjs:latest
           cache-from: type=local,src=/tmp/.buildx-cache-nextjs
           cache-to: type=local,dest=/tmp/.buildx-cache-nextjs-new,mode=max
-
-      - name: Build Nginx proxy
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: docker/nginx/Dockerfile
-          push: true
-          tags: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xusd-borrow-nginx:latest
-          cache-from: type=local,src=/tmp/.buildx-cache-nginx
-          cache-to: type=local,dest=/tmp/.buildx-cache-nginx-new,mode=max
 
       - name: Move cache
         run: |

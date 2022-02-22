@@ -3,7 +3,7 @@
   "404-message": "Sorry, page not found.",
   "about": {
     "heading": "About us",
-    "description": "Oasis mission is to provide the best and most trusted entry point to deploy your capital. We are building Oasis.app to let our users benefit from all of the potential in DeFi.\n\n Our team is made of passionate thinkers and builders.",
+    "description": "Oasis mission is to provide the best and most trusted entry point to deploy your capital. We are building xUSD Borrow to let our users benefit from all of the potential in DeFi.\n\n Our team is made of passionate thinkers and builders.",
     "careers-link": "Join Us",
     "pics-title": "Meet the team"
   },
@@ -110,7 +110,7 @@
   "erc20-disapprove-notification": "Locking {{ token }}",
   "erc20-disapprove-notification-past": "Locked {{ token }}",
   "error-header": "Lost connection",
-  "error-message": "It looks like we lost a connection to some data. Hit reload below to reload your page. If this error persists, please get in touch at support@oasis.app",
+  "error-message": "It looks like we lost a connection to some data. Hit reload below to reload your page. If this error persists, please get in touch at support@xUSD Borrow",
   "error-button-reload": "Reload page",
   "error-button": "More info",
   "create-ds-proxy-description-pending": "Creating proxy",
@@ -263,7 +263,7 @@
   },
   "manage-multiply-vault": {
     "tooltip": {
-      "vaultId": "The Vault ID is a unique reference for your Maker Vault in Oasis.app.",
+      "vaultId": "The Vault ID is a unique reference for your Maker Vault in xUSD Borrow.",
       "stabilityFee": "The Maker Protocol collects a Stability Fee on Dai that is generated from Maker Vaults. It is a variable-rate fee that changes when Maker’s governing body votes on proposals put forth by Risk Teams.",
       "liquidationFee": "If your vault is liquidated, a liquidation penalty is added to your vault’s total outstanding debt in Dai, which results in more collateral being sold to cover the outstanding debt. This is done to incentivize vaults owners to avoid liquidation.\nThe size of the liquidation penalty is determined by the Liquidation Fee which is calculated based on the debt in the vault.",
       "min-collateral": "This is also called the Liquidation Ratio. If the Vault reaches below the minimum collateralization level it is considered undercollateralized and is subject to liquidation. Your collateral will then be partially auctioned off to cover outstanding debt and liquidation fee.",
@@ -394,7 +394,7 @@
     },
     "default": {
       "description": "Borrow Dai, a USD pegged Stablecoin, or multiply your exposure using crypto as your collateral",
-      "title": "Oasis.app"
+      "title": "xUSD Borrow"
     },
 
     "support": {
@@ -451,7 +451,7 @@
   "tos-accept-message-updated": "Before you can continue, you’ll need to read and accept our updated terms of service.",
   "tos-acceptance-check-in-progress": "Acceptance check in progress...",
   "tos-desc": "By creating a Savings pot, I accept Oasis",
-  "tos-jwt-signature-message": "It looks like you're new to Oasis.app or are using a new device to connect. For added security, please sign a message with your wallet to continue.",
+  "tos-jwt-signature-message": "It looks like you're new to xUSD Borrow or are using a new device to connect. For added security, please sign a message with your wallet to continue.",
   "tos-read": "I have read and accept the Terms of Service.",
   "tos-view": "View Terms of Service",
   "tos-wallet-connection-in-progress": "Wallet connection in progress...",
@@ -594,7 +594,7 @@
   "adjusting-vault-multiply": "Multiplying your Vault in progress",
   "closing-vault-multiply": "Closing your Multiply Vault",
   "your-wallet": "Your wallet",
-  "welcome": "Welcome to the new Oasis.app.",
+  "welcome": "Welcome to the new xUSD Borrow.",
   "read-blog-post": "Read the blog post",
   "visit-old-oasis": "Visit the old Oasis",
   "oracles": {

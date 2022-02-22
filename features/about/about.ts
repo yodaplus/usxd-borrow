@@ -2,7 +2,9 @@ import fs from 'fs'
 import { join } from 'path'
 
 export function getTeamPicsFileNames() {
-  return fs.readdirSync(join(process.cwd(), 'public/static/img/team'))
+  const path = join(process.cwd(), 'public/static/img/team')
+
+  return fs.existsSync(path) ? fs.readdirSync(path) : []
 }
 
 export interface TeamMember {

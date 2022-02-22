@@ -1,0 +1,117 @@
+name: CI Apothem
+
+on:
+  push:
+    branches:
+      - xinfin
+  workflow_dispatch:
+
+env:
+  AWS_DEFAULT_REGION: ap-south-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+  API_HOST: 'https://borrow.yodaplus.net'
+  MIXPANEL_ENV: 'mvp'
+  MIXPANEL_KEY: ''
+  INFURA_PROJECT_ID: ''
+  ETHERSCAN_API_KEY: ''
+  SHOW_BUILD_INFO: '1'
+  NODE_ENV: 'production'
+  MULTIPLY_PROXY_ACTIONS: '0x0000000000000000000000000000000000000000'
+  EXCHANGE: '0x0000000000000000000000000000000000000000'
+  DUMMY_EXCHANGE: '0x0000000000000000000000000000000000000000'
+  USE_DUMMY: 0
+  CHALLENGE_JWT_SECRET: ${{ secrets.CHALLENGE_JWT_SECRET }}
+  USER_JWT_SECRET: ${{ secrets.USER_JWT_SECRET }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: |
+            /tmp/.buildx-cache-nextjs
+            /tmp/.buildx-cache-nginx
+          key: ${{ runner.os }}-tokenization-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-tokenization-buildx-
+
+      - name: ECR docker login
+        run:
+          aws ecr get-login-password | docker login --username AWS --password-stdin
+          135135176603.dkr.ecr.ap-south-1.amazonaws.com
+
+      - name: Extract commit hash
+        id: vars
+        shell: bash
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Build Next.js app
+        env:
+          SHA_TAG: ${{ steps.vars.outputs.sha_short }}
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          build-args: |
+            COMMIT_SHA=${{ env.SHA_TAG }}
+            API_HOST=${{ env.API_HOST }}
+            MIXPANEL_ENV=${{ env.MIXPANEL_ENV }}
+            MIXPANEL_KEY=${{ env.MIXPANEL_KEY }}
+            INFURA_PROJECT_ID=${{ env.INFURA_PROJECT_ID }}
+            ETHERSCAN_API_KEY=${{ env.ETHERSCAN_API_KEY }}
+            SHOW_BUILD_INFO=${{ env.SHOW_BUILD_INFO }}
+            NODE_ENV=${{ env.NODE_ENV }}
+          file: Dockerfile
+          push: true
+          tags: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xusd-borrow-nextjs:latest
+          cache-from: type=local,src=/tmp/.buildx-cache-nextjs
+          cache-to: type=local,dest=/tmp/.buildx-cache-nextjs-new,mode=max
+
+      - name: Build Nginx proxy
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/nginx/Dockerfile
+          push: true
+          tags: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xusd-borrow-nginx:latest
+          cache-from: type=local,src=/tmp/.buildx-cache-nginx
+          cache-to: type=local,dest=/tmp/.buildx-cache-nginx-new,mode=max
+
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache-nextjs
+          rm -rf /tmp/.buildx-cache-nginx
+          mv /tmp/.buildx-cache-nextjs-new /tmp/.buildx-cache-nextjs
+          mv /tmp/.buildx-cache-nginx-new /tmp/.buildx-cache-nginx
+  # publish:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Install docker compose
+  #       run:
+  #         curl -L
+  #         https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh
+  #         | sh
+  #     - name: Create ECS context
+  #       run: docker context create ecs yodaplus --from-env
+  #     - name: Use ECS context
+  #       run: docker context use yodaplus
+  #     - name: ECR docker login
+  #       run:
+  #         aws ecr get-login-password | docker login --username AWS --password-stdin
+  #         135135176603.dkr.ecr.ap-south-1.amazonaws.com
+  #     - name: Deploy to ECS
+  #       run: >
+  #         docker compose -f infra/docker-compose.base.yml -f infra/docker-compose.tags.yml -f infra/docker-compose.ecs.yml -f infra/docker-compose.ecs-staging.yml --project-name xusd-borrow-staging --project-directory ./ up || true

@@ -105,7 +105,7 @@ export function TemporaryFooter() {
           <Text>
             Commit:{' '}
             <Link
-              href={`https://github.com/OasisDex/oasis-borrow/commit/${buildHash}`}
+              href={`https://github.com/yodaplus/xusd-borrow/commit/${buildHash}`}
               target="_blank"
             >
               {commit}

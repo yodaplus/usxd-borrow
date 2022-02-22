@@ -3,7 +3,7 @@ const sitemap = require('nextjs-sitemap-generator')
 
 try {
   sitemap({
-    baseUrl: 'https://oasis.app',
+    baseUrl: 'https://borrow.yodaplus.net',
     pagesDirectory: `.next/server/pages`,
     targetDirectory: 'public/',
     ignoredPaths: ['/api', '404', '/[address]', '/terms', '/privacy', '/save'],

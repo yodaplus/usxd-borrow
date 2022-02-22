@@ -1,0 +1,15 @@
+version: '3.8'
+
+x-aws-cloudformation:
+  Resources:
+    NginxTCP80TargetGroup:
+      Properties:
+        HealthCheckPath: /
+        Matcher:
+          HttpCode: 200-499
+
+    NginxTCP443TargetGroup:
+      Properties:
+        HealthCheckPath: /
+        Matcher:
+          HttpCode: 200-499

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - COMMIT_SHA
+        - API_HOST
+        - MIXPANEL_ENV
+        - MIXPANEL_KEY
+        - INFURA_PROJECT_ID
+        - ETHERSCAN_API_KEY
+        - SHOW_BUILD_INFO
+        - NODE_ENV

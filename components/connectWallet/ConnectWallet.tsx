@@ -133,7 +133,9 @@ function ConnectWalletButtonWrapper({
   missingInjectedWallet?: boolean
 } & WithChildren) {
   return missingInjectedWallet ? (
-    <AppLink href="https://metamask.io/">{children}</AppLink>
+    <AppLink href="https://chrome.google.com/webstore/detail/xdcpay/bocpokimicclpaiekenaeelehdjllofo?hl=en-US">
+      {children}
+    </AppLink>
   ) : (
     <>{children}</>
   )

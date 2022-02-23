@@ -248,7 +248,7 @@ export function adjustPosition(
       first(),
       switchMap(({ sendWithGasEstimation }) =>
         getQuote$(
-          getTokenMetaData('DAI', tokens),
+          getTokenMetaData('USX', tokens),
           getTokenMetaData(token, tokens),
           exchange.address,
           oneInchAmount,
@@ -409,7 +409,7 @@ export function setDaiAllowance(
       switchMap(({ sendWithGasEstimation }) =>
         sendWithGasEstimation(approve, {
           kind: TxMetaKind.approve,
-          token: 'DAI',
+          token: 'USX',
           spender: state.proxyAddress!,
           amount: state.daiAllowanceAmount!,
         }).pipe(
@@ -552,7 +552,7 @@ export function closeVault(
       first(),
       switchMap(({ sendWithGasEstimation }) =>
         getQuote$(
-          getTokenMetaData('DAI', tokens),
+          getTokenMetaData('USX', tokens),
           getTokenMetaData(token, tokens),
           exchange.address,
           fromTokenAmount,

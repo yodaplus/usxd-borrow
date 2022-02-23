@@ -37,15 +37,15 @@ function ManageVaultDetailsSummary({
         label={t('system.vault-dai-debt')}
         value={
           <>
-            {formatAmount(debt, 'DAI')}
-            {` DAI`}
+            {formatAmount(debt, 'USX')}
+            {` USX`}
           </>
         }
         valueAfter={
           showAfterPill && (
             <>
-              {formatAmount(afterDebt, 'DAI')}
-              {` DAI`}
+              {formatAmount(afterDebt, 'USX')}
+              {` USX`}
             </>
           )
         }
@@ -74,15 +74,15 @@ function ManageVaultDetailsSummary({
         label={t('system.available-to-generate')}
         value={
           <>
-            {formatAmount(daiYieldFromLockedCollateral, 'DAI')}
-            {` DAI`}
+            {formatAmount(daiYieldFromLockedCollateral, 'USX')}
+            {` USX`}
           </>
         }
         valueAfter={
           showAfterPill && (
             <>
-              {formatAmount(daiYieldFromTotalCollateral, 'DAI')}
-              {` DAI`}
+              {formatAmount(daiYieldFromTotalCollateral, 'USX')}
+              {` USX`}
             </>
           )
         }

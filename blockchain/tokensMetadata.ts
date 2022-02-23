@@ -513,6 +513,20 @@ const tokens = [
     color: '#fdc134',
     tags: ['stablecoin'],
   },
+  {
+    symbol: 'USX',
+    precision: 18,
+    digits: 4,
+    maxSell: '10000000',
+    name: 'USX',
+    icon: 'dai',
+    iconCircle: 'dai_circle_color',
+    iconColor: 'dai_color',
+    ticker: 'usx-dai',
+    coinbaseTicker: 'usx-usdc',
+    color: '#fdc134',
+    tags: ['stablecoin'],
+  },
   // {
 
   // },

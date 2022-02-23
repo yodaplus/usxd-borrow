@@ -33,7 +33,7 @@ function ManageVaultEditingController({
     ? 'vaultEditingController'
     : 'vaultEditingControllerInactive'
 
-  const beanTokenName = isDaiEditing ? 'DAI' : token
+  const beanTokenName = isDaiEditing ? 'USX' : token
 
   function handleToggle(stage: ManageVaultEditingStage) {
     toggle!(stage)

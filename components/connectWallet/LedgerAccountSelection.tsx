@@ -114,10 +114,10 @@ export function LedgerAccountSelection({
                   <Text variant="boldBody">{formatAddress(address)}</Text>
                   <Flex sx={{ justifyContent: 'space-between' }}>
                     <Text variant="surfaceText" mr={2} sx={{ fontSize: 3 }}>
-                      {formatCryptoBalance(daiAmount)} DAI
+                      {formatCryptoBalance(daiAmount)} USX
                     </Text>
                     <Text variant="surfaceText" sx={{ fontSize: 3 }}>
-                      {formatCryptoBalance(ethAmount)} ETH
+                      {formatCryptoBalance(ethAmount)} XDC
                     </Text>
                   </Flex>
                 </Grid>

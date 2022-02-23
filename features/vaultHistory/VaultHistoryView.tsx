@@ -94,7 +94,7 @@ function MultiplyHistoryEventDetails(event: VaultHistoryEvent) {
       </Grid>
       <Grid gap={2}>
         <MultiplyHistoryEventDetailsItem rightItem label={t('outstanding-debt')}>
-          {'outstandingDebt' in event && formatCryptoBalance(event.outstandingDebt)} DAI
+          {'outstandingDebt' in event && formatCryptoBalance(event.outstandingDebt)} USX
         </MultiplyHistoryEventDetailsItem>
         <MultiplyHistoryEventDetailsItem rightItem label={t('net-value')}>
           {'netValueUSD' in event && '$' + formatFiatBalance(event.netValueUSD)}

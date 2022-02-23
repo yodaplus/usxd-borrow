@@ -17,10 +17,6 @@ const {
 
 const FOOTER_SECTIONS = [
   {
-    titleKey: 'nav.about',
-    links: [],
-  },
-  {
     titleKey: 'nav.resources',
     links: [{ labelKey: 'nav.oracles', url: '/oracles', target: undefined }],
   },

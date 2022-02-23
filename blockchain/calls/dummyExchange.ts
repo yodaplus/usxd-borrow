@@ -10,5 +10,5 @@ export const setExchangePrice: CallDef<{ price: BigNumber }, any> = {
   call: (_, { contract, exchange }) => {
     return contract<DummyExchange>(contractDesc(dummyExchange, exchange.address)).methods.setPrice
   },
-  prepareArgs: ({ price }: { price: BigNumber }) => [amountToWei(price, 'DAI').toFixed(0)],
+  prepareArgs: ({ price }: { price: BigNumber }) => [amountToWei(price, 'USX').toFixed(0)],
 }

@@ -15,9 +15,7 @@ const WHITELISTED_JOINS = new Set(['XDC-A'])
 export function createIlks$(context$: Observable<Context>): Observable<string[]> {
   return context$.pipe(
     map((context) => {
-      return Object.keys(context.joins)
-        .filter((join) => join !== 'DAI' && join !== 'SAI')
-        .filter((join) => WHITELISTED_JOINS.has(join))
+      return Object.keys(context.joins).filter((join) => WHITELISTED_JOINS.has(join))
     }),
   )
 }

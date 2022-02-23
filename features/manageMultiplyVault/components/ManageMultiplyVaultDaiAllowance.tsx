@@ -68,17 +68,17 @@ export function ManageMultiplyVaultDaiAllowance({
                 disabled={!isCustom}
                 value={
                   daiAllowanceAmount && isCustom
-                    ? formatAmount(daiAllowanceAmount, getToken('DAI').symbol)
+                    ? formatAmount(daiAllowanceAmount, getToken('USX').symbol)
                     : null
                 }
                 mask={createNumberMask({
                   allowDecimal: true,
-                  decimalLimit: getToken('DAI').digits,
+                  decimalLimit: getToken('USX').digits,
                   prefix: '',
                 })}
                 onChange={handleNumericInput(updateDaiAllowanceAmount!)}
               />
-              <Text sx={{ fontSize: 1 }}>DAI</Text>
+              <Text sx={{ fontSize: 1 }}>USX</Text>
             </Grid>
           </Radio>
         </>

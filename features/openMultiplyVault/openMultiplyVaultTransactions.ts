@@ -285,7 +285,7 @@ export function multiplyVault(
   }: OpenMultiplyVaultState,
 ) {
   return getQuote$(
-    getTokenMetaData('DAI', tokens),
+    getTokenMetaData('USX', tokens),
     getTokenMetaData(token, tokens),
     exchange.address,
     oneInchAmount,

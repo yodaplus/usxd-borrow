@@ -36,15 +36,15 @@ function ManageMultiplyVaultDetailsSummary({
         label={t('system.vault-dai-debt')}
         value={
           <>
-            {formatAmount(debt, 'DAI')}
-            {` DAI`}
+            {formatAmount(debt, 'USX')}
+            {` USX`}
           </>
         }
         valueAfter={
           showAfterPill && (
             <>
-              {formatAmount(afterDebt, 'DAI')}
-              {` DAI`}
+              {formatAmount(afterDebt, 'USX')}
+              {` USX`}
             </>
           )
         }

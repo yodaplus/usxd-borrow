@@ -35,15 +35,15 @@ function OpenMultiplyVaultDetailsSummary({
         label={t('system.vault-dai-debt')}
         value={
           <>
-            {formatAmount(zero, 'DAI')}
-            {` DAI`}
+            {formatAmount(zero, 'USX')}
+            {` USX`}
           </>
         }
         valueAfter={
           showAfterPill && (
             <>
-              {formatAmount(afterOutstandingDebt, 'DAI')}
-              {` DAI`}
+              {formatAmount(afterOutstandingDebt, 'USX')}
+              {` USX`}
             </>
           )
         }

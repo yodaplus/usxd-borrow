@@ -137,7 +137,7 @@ export function createExchangeQuote$(
   return context$.pipe(
     switchMap((context) => {
       const { tokens, exchange } = context
-      const dai = getTokenMetaData('DAI', tokens)
+      const dai = getTokenMetaData('USX', tokens)
       const collateral = getTokenMetaData(token, tokens)
 
       return getQuote$(dai, collateral, exchange.address, amount, slippage, action)

@@ -18,7 +18,7 @@ export function createBalanceInfo$(
   return combineLatest(
     address ? balance$(token, address) : of(zero),
     address ? balance$('ETH', address) : of(zero),
-    address ? balance$('DAI', address) : of(zero),
+    address ? balance$('USX', address) : of(zero),
   ).pipe(
     map(([collateralBalance, ethBalance, daiBalance]) => ({
       collateralBalance,

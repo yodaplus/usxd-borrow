@@ -246,40 +246,6 @@ export function AccountModal({ close }: ModalProps) {
             </Grid>
           </Card>
         </Box>
-        <Flex
-          sx={{
-            fontWeight: 'semiBold',
-            px: 3,
-            my: 3,
-            py: 1,
-            mx: 1,
-          }}
-        >
-          <AppLink
-            sx={{ color: 'primary', mr: 3 }}
-            withAccountPrefix={false}
-            href="/terms"
-            onClick={close}
-          >
-            {t('account-terms')}
-          </AppLink>
-          <AppLink
-            sx={{ color: 'primary', mr: 3 }}
-            withAccountPrefix={false}
-            href="/privacy"
-            onClick={close}
-          >
-            {t('account-privacy')}
-          </AppLink>
-          <AppLink
-            sx={{ color: 'primary' }}
-            withAccountPrefix={false}
-            href="/support"
-            onClick={close}
-          >
-            {t('account-support')}
-          </AppLink>
-        </Flex>
         <PendingTransactions />
         <RecentTransactions />
       </Grid>

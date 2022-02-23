@@ -38,15 +38,15 @@ export function OpenVaultDetailsSummary({
         label={t('system.vault-dai-debt')}
         value={
           <>
-            {formatAmount(zero, 'DAI')}
-            {` DAI`}
+            {formatAmount(zero, 'USX')}
+            {` USX`}
           </>
         }
         valueAfter={
           showAfterPill && (
             <>
-              {formatAmount(generateAmount || zero, 'DAI')}
-              {` DAI`}
+              {formatAmount(generateAmount || zero, 'USX')}
+              {` USX`}
             </>
           )
         }
@@ -74,15 +74,15 @@ export function OpenVaultDetailsSummary({
         label={t('system.available-to-generate')}
         value={
           <>
-            {formatAmount(zero, 'DAI')}
-            {` DAI`}
+            {formatAmount(zero, 'USX')}
+            {` USX`}
           </>
         }
         valueAfter={
           showAfterPill && (
             <>
-              {formatAmount(maxGenerateAmountCurrentPrice.minus(generateAmount || zero), 'DAI')}
-              {` DAI`}
+              {formatAmount(maxGenerateAmountCurrentPrice.minus(generateAmount || zero), 'USX')}
+              {` USX`}
             </>
           )
         }

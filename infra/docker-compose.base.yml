@@ -11,6 +11,16 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
+  xdc-price-poker:
+    ports:
+      - '3001:3001'
+
+    environment:
+      WALLET_PRIVATE_KEY: ${POKER_WALLET_PRIVATE_KEY}
+      POKE_TARGET_CONTRACT: "0x6911b072DC16Dcc5B55caB7a832cBfcfB3E45069"
+      JSON_RPC_NODE_URL: 'https://rpc-apothem.xinfin.yodaplus.net'
+      PORT: 3001
+
   nginx:
     depends_on:
       - nextjs

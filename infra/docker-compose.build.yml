@@ -6,6 +6,11 @@ services:
       context: .
       dockerfile: docker/nginx/Dockerfile
 
+  xdc-price-poker:
+    build:
+      context: .
+      dockerfile: docker/xdc-price-poker/Dockerfile
+
   nextjs:
     build:
       context: .

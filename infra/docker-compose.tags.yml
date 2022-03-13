@@ -4,5 +4,8 @@ services:
   nginx:
     image: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xusd-borrow-nginx:latest
 
+  xdc-price-poker:
+    image: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xdc-price-poker:latest
+
   nextjs:
     image: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xusd-borrow-nextjs:latest

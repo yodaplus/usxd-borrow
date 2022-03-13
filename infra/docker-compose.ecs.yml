@@ -13,3 +13,9 @@ x-aws-cloudformation:
         HealthCheckPath: /
         Matcher:
           HttpCode: 200-499
+
+    XdcpricepokerTCP3001TargetGroup:
+      Properties:
+        HealthCheckPath: /status
+        Matcher:
+          HttpCode: 200-499

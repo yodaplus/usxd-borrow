@@ -43,6 +43,7 @@ jobs:
           path: |
             /tmp/.buildx-cache-nextjs
             /tmp/.buildx-cache-nginx
+            /tmp/.buildx-cache-xdc-price-poker
           key: ${{ runner.os }}-tokenization-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-tokenization-buildx-
@@ -67,6 +68,16 @@ jobs:
           tags: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xusd-borrow-nginx:latest
           cache-from: type=local,src=/tmp/.buildx-cache-nginx
           cache-to: type=local,dest=/tmp/.buildx-cache-nginx-new,mode=max
+
+      - name: Build XDC price poker
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/xdc-price-poker/Dockerfile
+          push: true
+          tags: 135135176603.dkr.ecr.ap-south-1.amazonaws.com/xdc-price-poker:latest
+          cache-from: type=local,src=/tmp/.buildx-cache-xdc-price-poker
+          cache-to: type=local,dest=/tmp/.buildx-cache-xdc-price-poker-new,mode=max
 
       - name: Build Next.js app
         env:
@@ -93,8 +104,10 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache-nextjs
           rm -rf /tmp/.buildx-cache-nginx
+          rm -rf /tmp/.buildx-cache-xdc-price-poker
           mv /tmp/.buildx-cache-nextjs-new /tmp/.buildx-cache-nextjs
           mv /tmp/.buildx-cache-nginx-new /tmp/.buildx-cache-nginx
+          mv /tmp/.buildx-cache-xdc-price-poker-new /tmp/.buildx-cache-xdc-price-poker
 
   publish:
     runs-on: ubuntu-latest

@@ -13,7 +13,9 @@ services:
 
   xdc-price-poker:
     ports:
-      - '3001:3001'
+      - target: 3001
+        published: 3001
+        x-aws-protocol: http
 
     environment:
       WALLET_PRIVATE_KEY: ${POKER_WALLET_PRIVATE_KEY}

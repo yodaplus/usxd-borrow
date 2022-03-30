@@ -8,6 +8,7 @@ const app = express()
 let {
   WALLET_PRIVATE_KEY,
   POKE_TARGET_CONTRACT,
+  SPOTTER_CONTRACT,
   JSON_RPC_NODE_URL = 'https://rpc-apothem.xinfin.yodaplus.net',
   POLL_INTERVAL = 60000,
   PORT = 3000,
@@ -19,6 +20,11 @@ if (!WALLET_PRIVATE_KEY) {
 }
 
 if (!POKE_TARGET_CONTRACT) {
+  console.log('POKE_TARGET_CONTRACT is not defined')
+  process.exit(1)
+}
+
+if (!SPOTTER_CONTRACT) {
   console.log('POKE_TARGET_CONTRACT is not defined')
   process.exit(1)
 }
@@ -35,6 +41,7 @@ const web3 = new Web3(JSON_RPC_NODE_URL)
 
 WALLET_PRIVATE_KEY = hexSanitize(web3, WALLET_PRIVATE_KEY)
 POKE_TARGET_CONTRACT = hexSanitize(web3, POKE_TARGET_CONTRACT)
+SPOTTER_CONTRACT = hexSanitize(web3, SPOTTER_CONTRACT)
 
 web3.eth.accounts.wallet.add(WALLET_PRIVATE_KEY)
 
@@ -46,6 +53,18 @@ app.get('/status', (req, res) => {
 
 app.listen(PORT)
 console.log('web server started at', PORT)
+
+const sendTx = async ({ txData, to }) => {
+  const receipt = await web3.eth.sendTransaction({
+    to: to,
+    from: web3.eth.accounts.wallet[0].address,
+    data: txData,
+    gas: 3320600,
+  })
+
+  console.log('Receipt status:', receipt.status)
+  console.log('Tx hash:', receipt.transactionHash)
+}
 
 const run = async () => {
   status = 'FETCH'
@@ -65,7 +84,7 @@ const run = async () => {
   const priceWei = web3.utils.toWei(price, 'ether')
   const priceBytes32 = web3.utils.padLeft(web3.utils.toHex(priceWei), 64)
 
-  const txData = web3.eth.abi.encodeFunctionCall(
+  const txDataOraclePoke = web3.eth.abi.encodeFunctionCall(
     {
       name: 'poke',
       type: 'function',
@@ -79,19 +98,27 @@ const run = async () => {
     [priceBytes32],
   )
 
-  console.log('Sending poke() transaction to', POKE_TARGET_CONTRACT)
+  const txDataSpotterPoke = web3.eth.abi.encodeFunctionCall(
+    {
+      name: 'poke',
+      type: 'function',
+      inputs: [
+        {
+          type: 'bytes32',
+          name: 'ilk',
+        },
+      ],
+    },
+    [web3.utils.padRight(web3.utils.asciiToHex('XDC-A'), 64)],
+  )
 
   status = 'POKE'
 
-  const receipt = await web3.eth.sendTransaction({
-    to: POKE_TARGET_CONTRACT,
-    from: web3.eth.accounts.wallet[0].address,
-    data: txData,
-    gas: 332060,
-  })
+  console.log('Sending oracle poke() transaction to', POKE_TARGET_CONTRACT)
+  await sendTx({ txData: txDataOraclePoke, to: POKE_TARGET_CONTRACT })
 
-  console.log('Receipt status:', receipt.status)
-  console.log('Tx hash:', receipt.transactionHash)
+  console.log('Sending spotter poke() transaction to', SPOTTER_CONTRACT)
+  await sendTx({ txData: txDataSpotterPoke, to: SPOTTER_CONTRACT })
 }
 
 const runTry = async () => {

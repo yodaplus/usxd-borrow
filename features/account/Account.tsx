@@ -25,13 +25,13 @@ function DaiIndicator({ daiBalance }: { daiBalance: BigNumber | undefined }) {
       sx={{
         position: 'relative',
         alignItems: 'center',
-        bg: 'warning',
+        bg: '#ced0de',
         borderRadius: 'round',
         p: 1,
       }}
     >
-      <Icon sx={{ zIndex: 1 }} name="dai_circle_color" size={[24, 30]} />
-      <Box sx={{ mx: 2, color: 'onWarning' }}>
+      <Icon sx={{ zIndex: 1 }} name="usx" size={[24, 30]} />
+      <Box sx={{ mx: 2, color: '#264d81' }}>
         {daiBalance ? formatCryptoBalance(daiBalance) : '0.00'}
       </Box>
     </Flex>

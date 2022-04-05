@@ -217,7 +217,7 @@ export function AccountModal({ close }: ModalProps) {
                 <Textarea
                   ref={clipboardContentRef}
                   sx={{ position: 'absolute', top: '-1000px', left: '-1000px' }}
-                  value={account}
+                  value={ethToXdcAddress(account)}
                   readOnly
                 />
               </Flex>

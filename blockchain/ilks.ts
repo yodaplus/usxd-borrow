@@ -10,7 +10,7 @@ import { of } from 'rxjs'
 import { combineLatest, Observable } from 'rxjs'
 import { distinctUntilChanged, map, retry, shareReplay, switchMap } from 'rxjs/operators'
 
-const WHITELISTED_JOINS = new Set(['XDC-A'])
+const WHITELISTED_JOINS = new Set(['XDC-A', 'XDC-B', 'XDC-C'])
 
 export function createIlks$(context$: Observable<Context>): Observable<string[]> {
   return context$.pipe(

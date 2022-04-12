@@ -8,8 +8,7 @@ const app = express()
 let {
   WALLET_PRIVATE_KEY,
   POKE_TARGET_CONTRACT,
-  SPOTTER_CONTRACT,
-  JUG_CONTRACT,
+  POKER_CONTRACT,
   JSON_RPC_NODE_URL = 'https://rpc-apothem.xinfin.yodaplus.net',
   POLL_INTERVAL = 60000,
   PORT = 3000,
@@ -25,13 +24,8 @@ if (!POKE_TARGET_CONTRACT) {
   process.exit(1)
 }
 
-if (!SPOTTER_CONTRACT) {
-  console.log('POKE_TARGET_CONTRACT is not defined')
-  process.exit(1)
-}
-
-if (!JUG_CONTRACT) {
-  console.log('POKE_TARGET_CONTRACT is not defined')
+if (!POKER_CONTRACT) {
+  console.log('POKER_CONTRACT is not defined')
   process.exit(1)
 }
 
@@ -47,8 +41,7 @@ const web3 = new Web3(JSON_RPC_NODE_URL)
 
 WALLET_PRIVATE_KEY = hexSanitize(web3, WALLET_PRIVATE_KEY)
 POKE_TARGET_CONTRACT = hexSanitize(web3, POKE_TARGET_CONTRACT)
-SPOTTER_CONTRACT = hexSanitize(web3, SPOTTER_CONTRACT)
-JUG_CONTRACT = hexSanitize(web3, JUG_CONTRACT)
+POKER_CONTRACT = hexSanitize(web3, POKER_CONTRACT)
 
 web3.eth.accounts.wallet.add(WALLET_PRIVATE_KEY)
 
@@ -71,44 +64,6 @@ const sendTx = async ({ txData, to }) => {
 
   console.log('Receipt status:', receipt.status)
   console.log('Tx hash:', receipt.transactionHash)
-}
-
-const sendSpotterPoke = async (ilk) => {
-  const txDataSpotterPoke = web3.eth.abi.encodeFunctionCall(
-    {
-      name: 'poke',
-      type: 'function',
-      inputs: [
-        {
-          type: 'bytes32',
-          name: 'ilk',
-        },
-      ],
-    },
-    [web3.utils.padRight(web3.utils.asciiToHex(ilk), 64)],
-  )
-
-  console.log(`Sending spotter poke(${ilk}) transaction to`, SPOTTER_CONTRACT)
-  await sendTx({ txData: txDataSpotterPoke, to: SPOTTER_CONTRACT })
-}
-
-const sendJugDrip = async (ilk) => {
-  const txDataSpotterPoke = web3.eth.abi.encodeFunctionCall(
-    {
-      name: 'drip',
-      type: 'function',
-      inputs: [
-        {
-          type: 'bytes32',
-          name: 'ilk',
-        },
-      ],
-    },
-    [web3.utils.padRight(web3.utils.asciiToHex(ilk), 64)],
-  )
-
-  console.log(`Sending jug drip(${ilk}) transaction to`, JUG_CONTRACT)
-  await sendTx({ txData: txDataSpotterPoke, to: JUG_CONTRACT })
 }
 
 const run = async () => {
@@ -148,13 +103,17 @@ const run = async () => {
   console.log('Sending oracle poke() transaction to', POKE_TARGET_CONTRACT)
   await sendTx({ txData: txDataOraclePoke, to: POKE_TARGET_CONTRACT })
 
-  await sendSpotterPoke('XDC-A')
-  await sendSpotterPoke('XDC-B')
-  await sendSpotterPoke('XDC-C')
+  const txDataPoker = web3.eth.abi.encodeFunctionCall(
+    {
+      name: 'poke',
+      type: 'function',
+      inputs: [],
+    },
+    [],
+  )
 
-  await sendJugDrip('XDC-A')
-  await sendJugDrip('XDC-B')
-  await sendJugDrip('XDC-C')
+  console.log('Sending poker poke() transaction to', POKER_CONTRACT)
+  await sendTx({ txData: txDataPoker, to: POKER_CONTRACT })
 }
 
 const runTry = async () => {

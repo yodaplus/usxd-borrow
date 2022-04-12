@@ -4,7 +4,9 @@
   "main": "src/index.js",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "build": "dapp --use solc:0.8.6 build",
+    "deploy": "dapp create Poker"
   },
   "dependencies": {
     "dotenv": "^16.0.0",

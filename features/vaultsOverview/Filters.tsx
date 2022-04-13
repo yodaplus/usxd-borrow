@@ -1,6 +1,6 @@
 import { Icon } from '@makerdao/dai-ui-icons'
 import { Pages, trackingEvents } from 'analytics/analytics'
-import { COIN_TAGS, CoinTag } from 'blockchain/tokensMetadata'
+import { CoinTag } from 'blockchain/tokensMetadata'
 import { useTranslation } from 'next-i18next'
 import React, { memo, useCallback } from 'react'
 import ReactSelect from 'react-select'
@@ -27,7 +27,6 @@ function Filters_({
   page,
   searchPlaceholder,
   sx,
-  multiply,
 }: FiltersProps) {
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,21 +36,11 @@ function Filters_({
   )
   const { t } = useTranslation()
 
-  const vaultTypeOptions = !multiply
-    ? [
-        ...COIN_TAGS.map((tag) => ({
-          value: tag,
-          label: t(`filters.${tag}`),
-        })),
-      ]
-    : []
-
   const options = [
     {
       value: undefined,
       label: t(defaultTag),
     },
-    ...vaultTypeOptions,
   ]
 
   const selected = options.find((option) => option.value === tagFilter)

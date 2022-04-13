@@ -1,6 +1,5 @@
 import { Icon } from '@makerdao/dai-ui-icons'
 import { Pages, trackingEvents } from 'analytics/analytics'
-import { COIN_TAGS } from 'blockchain/tokensMetadata'
 import { TagFilter } from 'features/ilks/popularIlksFilters'
 import { useTranslation } from 'next-i18next'
 import React, { memo, useCallback } from 'react'
@@ -45,10 +44,6 @@ function Filters_({
       value: undefined,
       label: t(defaultTag),
     },
-    ...COIN_TAGS.map((tag) => ({
-      value: tag,
-      label: t(`filters.${tag}`),
-    })),
   ]
 
   const selected = options.find((option) => option.value === tagFilter)

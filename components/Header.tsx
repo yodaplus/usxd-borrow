@@ -11,10 +11,10 @@ import { WithChildren } from 'helpers/types'
 import { ethToXdcAddress } from 'helpers/xinfin'
 import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
-import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { TRANSITIONS } from 'theme'
 import { Box, Card, Container, Flex, Grid, Image, SxStyleProp, Text } from 'theme-ui'
+import { AbstractProvider } from 'web3-core'
 
 import { useAppContext } from './AppContextProvider'
 import { SelectComponents } from 'react-select/src/components'
@@ -86,6 +86,55 @@ export function BackArrow() {
   )
 }
 
+function AddToWalletButton() {
+  const { context$ } = useAppContext()
+  const context = useObservable(context$)
+  const { t } = useTranslation()
+
+  const web3 = context?.web3
+  const USX = context?.tokens.USX
+
+  const callWatchAsset = useCallback(() => {
+    const provider = web3?.currentProvider
+
+    if (!provider || !USX?.address) {
+      return
+    }
+
+    ;(provider as AbstractProvider).sendAsync(
+      {
+        jsonrpc: '2.0',
+        method: 'metamask_watchAsset',
+        params: {
+          type: 'ERC20',
+          options: {
+            address: USX.address,
+            symbol: 'USXD',
+            decimals: 18,
+          },
+        } as any,
+      },
+      () => {},
+    )
+  }, [web3, USX])
+
+  return (
+    <Text
+      onClick={callWatchAsset}
+      variant="paragraph4"
+      sx={{
+        fontWeight: 'semiBold',
+        textAlign: 'right',
+        mr: 1,
+        cursor: 'pointer',
+        color: 'text.subtitle',
+      }}
+    >
+      {t('add-to-xdcpay')}
+    </Text>
+  )
+}
+
 function ConnectedHeader() {
   const { accountData$, context$ } = useAppContext()
   const { t } = useTranslation()
@@ -127,7 +176,10 @@ function ConnectedHeader() {
             {t('open-new-vault')}
           </AppLink>
         </Flex>
-        <AccountButton />
+        <Flex sx={{ flexDirection: 'column' }}>
+          <AccountButton />
+          <AddToWalletButton />
+        </Flex>
       </>
     </BasicHeader>
   )
@@ -139,83 +191,12 @@ const HEADER_LINKS = {
   blog: 'https://blog.oasis.app',
 }
 
-function HeaderDropdown({
-  title,
-  sx,
-  children,
-}: { title: string; sx?: SxStyleProp } & WithChildren) {
-  return (
-    <Box
-      sx={{
-        position: 'relative',
-        top: '-1px',
-        '& .menu': { display: 'none' },
-        '&:hover': {
-          '& .trigger': {
-            color: 'primary',
-          },
-          '& .menu': {
-            display: 'block',
-          },
-        },
-        ...sx,
-      }}
-    >
-      <Box className="trigger" variant="links.navHeader" sx={{ whiteSpace: 'nowrap' }}>
-        {title} <Icon name="caret_down" size="7.75px" sx={{ ml: '3px' }} />
-      </Box>
-      <Box className="menu" sx={{ position: 'absolute', top: '100%', pt: 2 }}>
-        <Card
-          sx={{
-            borderRadius: 'medium',
-            minWidth: 6,
-            pl: 3,
-            pr: 4,
-            py: 3,
-            boxShadow: 'cardLanding',
-            border: 'none',
-            display: 'grid',
-            rowGap: 2,
-            '& > *': {
-              py: 2,
-            },
-          }}
-        >
-          {children}
-        </Card>
-      </Box>
-    </Box>
-  )
-}
-
-function LanguageDropdown({ sx }: { sx?: SxStyleProp }) {
-  const { t, i18n } = useTranslation()
-  const router = useRouter()
-  // @ts-ignore
-  const { locales }: { locales: string[] } = i18n.options
-
-  return (
-    <HeaderDropdown title={t(`lang-dropdown.${i18n.language}`)} sx={sx}>
-      {locales
-        .filter((lang) => lang !== i18n.language)
-        .map((lang, index) => (
-          <Text
-            key={index}
-            variant="links.nav"
-            sx={{ fontWeight: 'body' }}
-            onClick={() => router.push(router.asPath, router.asPath, { locale: lang })}
-          >
-            {t(`lang-dropdown.${lang}`)}
-          </Text>
-        ))}
-    </HeaderDropdown>
-  )
-}
-
-const LangSelectMobileComponents: Partial<SelectComponents<{
-  value: string
-  label: string
-}>> = {
+const LangSelectMobileComponents: Partial<
+  SelectComponents<{
+    value: string
+    label: string
+  }>
+> = {
   IndicatorsContainer: () => null,
   ValueContainer: ({ children }) => (
     <Flex sx={{ color: 'primary', fontWeight: 'body' }}>{children}</Flex>
@@ -405,9 +386,6 @@ function DisconnectedHeader() {
                 sx={{ position: 'relative', left: '6px', transition: '0.2s' }}
               />
             </AppLink>
-            <LanguageDropdown
-              sx={{ '@media (max-width: 1330px)': { '.menu': { right: '-6px' } } }}
-            />
           </Grid>
         </BasicHeader>
       </Box>

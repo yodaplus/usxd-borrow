@@ -130,7 +130,7 @@ function AddToWalletButton() {
         color: 'text.subtitle',
       }}
     >
-      {t('add-to-xdcpay')}
+      {t('add-to-wallet')}
     </Text>
   )
 }

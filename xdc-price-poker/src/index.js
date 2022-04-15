@@ -9,6 +9,7 @@ let {
   WALLET_PRIVATE_KEY,
   POKE_TARGET_CONTRACT,
   POKER_CONTRACT,
+  OSM,
   JSON_RPC_NODE_URL = 'https://rpc-apothem.xinfin.yodaplus.net',
   POLL_INTERVAL = 60000,
   PORT = 3000,
@@ -29,6 +30,10 @@ if (!POKER_CONTRACT) {
   process.exit(1)
 }
 
+if (!OSM) {
+  OSM = '[]'
+}
+
 const hexSanitize = (web3, str) => {
   if (/^0x/.test(str)) {
     return str
@@ -42,6 +47,7 @@ const web3 = new Web3(JSON_RPC_NODE_URL)
 WALLET_PRIVATE_KEY = hexSanitize(web3, WALLET_PRIVATE_KEY)
 POKE_TARGET_CONTRACT = hexSanitize(web3, POKE_TARGET_CONTRACT)
 POKER_CONTRACT = hexSanitize(web3, POKER_CONTRACT)
+OSM = JSON.parse(OSM)
 
 web3.eth.accounts.wallet.add(WALLET_PRIVATE_KEY)
 
@@ -64,6 +70,42 @@ const sendTx = async ({ txData, to }) => {
 
   console.log('Receipt status:', receipt.status)
   console.log('Tx hash:', receipt.transactionHash)
+}
+
+const processOsm = async (address) => {
+  const txDataPass = web3.eth.abi.encodeFunctionCall(
+    {
+      name: 'pass',
+      type: 'function',
+      inputs: [],
+    },
+    [],
+  )
+
+  const isOK = web3.eth.abi.decodeParameter(
+    'bool',
+    await web3.eth.call({
+      to: address,
+      data: txDataPass,
+    }),
+  )
+
+  if (!isOK) {
+    console.log(`OSM ${address} is not ready for poke() yet`)
+    return
+  }
+
+  const txDataPoke = web3.eth.abi.encodeFunctionCall(
+    {
+      name: 'poke',
+      type: 'function',
+      inputs: [],
+    },
+    [],
+  )
+
+  console.log('Sending OSM poke() transaction to', address)
+  await sendTx({ txData: txDataPoke, to: address })
 }
 
 const run = async () => {
@@ -114,6 +156,8 @@ const run = async () => {
 
   console.log('Sending poker poke() transaction to', POKER_CONTRACT)
   await sendTx({ txData: txDataPoker, to: POKER_CONTRACT })
+
+  await Promise.all(OSM.map(processOsm))
 }
 
 const runTry = async () => {

@@ -20,7 +20,7 @@ export function createAccountData(
     filter((context): context is ContextConnected => context.status === 'connected'),
     switchMap((context) =>
       combineLatest(
-        startWithDefault(balance$('USX', context.account), undefined),
+        startWithDefault(balance$('USXD', context.account), undefined),
         startWithDefault(vaults$(context.account).pipe(map((vault) => vault.length)), undefined),
       ).pipe(
         map(([balance, numberOfVaults]) => ({

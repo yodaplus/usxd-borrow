@@ -42,7 +42,7 @@ export function GeneralManageVaultView({ id }: { id: BigNumber }) {
       let currentRate = zero
       if ((mpEvent as MultiplyEvent).flDue) {
         const flFee = (mpEvent as MultiplyEvent).flDue.minus(mpEvent.flBorrowed)
-        mpEvent.fees = amountFromWei(flFee.plus(mpEvent.oazoFee), 'USX')
+        mpEvent.fees = amountFromWei(flFee.plus(mpEvent.oazoFee), 'USXD')
       }
 
       for (const event of vaultHistory.filter(

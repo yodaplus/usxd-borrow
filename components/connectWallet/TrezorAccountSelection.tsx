@@ -95,7 +95,7 @@ export function TrezorAccountSelection({ web3Context, cancel }: TrezorAccountSel
                   <Text variant="boldBody">{formatAddress(address)}</Text>
                   <Flex sx={{ justifyContent: 'space-between' }}>
                     <Text variant="surfaceText" mr={2} sx={{ fontSize: 3 }}>
-                      {formatCryptoBalance(daiAmount)} USX
+                      {formatCryptoBalance(daiAmount)} USXD
                     </Text>
                     <Text variant="surfaceText" sx={{ fontSize: 3 }}>
                       {formatCryptoBalance(ethAmount)} XDC

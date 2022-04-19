@@ -92,12 +92,12 @@ function AddToWalletButton() {
   const { t } = useTranslation()
 
   const web3 = context?.web3
-  const USX = context?.tokens.USX
+  const USXD = context?.tokens.USXD
 
   const callWatchAsset = useCallback(() => {
     const provider = web3?.currentProvider
 
-    if (!provider || !USX?.address) {
+    if (!provider || !USXD?.address) {
       return
     }
 
@@ -108,7 +108,7 @@ function AddToWalletButton() {
         params: {
           type: 'ERC20',
           options: {
-            address: USX.address,
+            address: USXD.address,
             symbol: 'USXD',
             decimals: 18,
           },
@@ -116,7 +116,7 @@ function AddToWalletButton() {
       },
       () => {},
     )
-  }, [web3, USX])
+  }, [web3, USXD])
 
   return (
     <Text

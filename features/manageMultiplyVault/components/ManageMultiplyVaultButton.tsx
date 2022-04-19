@@ -21,7 +21,7 @@ function manageMultiplyVaultButtonText(state: ManageMultiplyVaultState): string 
         : state.insufficientCollateralAllowance
         ? t('set-token-allowance', { token: state.vault.token })
         : state.insufficientDaiAllowance
-        ? t('set-token-allowance', { token: 'USX' })
+        ? t('set-token-allowance', { token: 'USXD' })
         : state.originalEditingStage === 'otherActions' && state.otherAction === 'closeVault'
         ? t('close-vault')
         : t('confirm')
@@ -30,12 +30,12 @@ function manageMultiplyVaultButtonText(state: ManageMultiplyVaultState): string 
       return state.insufficientCollateralAllowance
         ? t('set-token-allowance', { token: state.vault.token })
         : state.insufficientDaiAllowance
-        ? t('set-token-allowance', { token: 'USX' })
+        ? t('set-token-allowance', { token: 'USXD' })
         : t('continue')
 
     case 'collateralAllowanceSuccess':
       return state.insufficientDaiAllowance
-        ? t('set-token-allowance', { token: 'USX' })
+        ? t('set-token-allowance', { token: 'USXD' })
         : t('continue')
 
     case 'daiAllowanceSuccess':
@@ -59,7 +59,7 @@ function manageMultiplyVaultButtonText(state: ManageMultiplyVaultState): string 
     case 'daiAllowanceWaitingForConfirmation':
       return state.customDaiAllowanceAmountEmpty
         ? t('enter-allowance-amount')
-        : t('set-token-allowance', { token: 'USX' })
+        : t('set-token-allowance', { token: 'USXD' })
 
     case 'collateralAllowanceFailure':
     case 'daiAllowanceFailure':
@@ -132,7 +132,7 @@ export function ManageMultiplyVaultButton(props: ManageMultiplyVaultState) {
   const buttonText = manageMultiplyVaultButtonText(props)
   const secondaryButtonText =
     stage === 'daiAllowanceFailure' || stage === 'collateralAllowanceFailure'
-      ? t('edit-token-allowance', { token: isCollateralAllowanceStage ? token : 'USX' })
+      ? t('edit-token-allowance', { token: isCollateralAllowanceStage ? token : 'USXD' })
       : t('edit-vault-details')
 
   function trackEvents() {

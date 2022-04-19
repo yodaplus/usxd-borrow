@@ -82,9 +82,9 @@ export function ManageVaultChangesInformation(props: ManageVaultState) {
         label={`${t('system.vault-dai-debt')}`}
         value={
           <Flex>
-            {`${formatCryptoBalance(debt || zero)} USX`}
+            {`${formatCryptoBalance(debt || zero)} USXD`}
             <VaultChangesInformationArrow />
-            {`${formatCryptoBalance(afterDebt || zero)} USX`}
+            {`${formatCryptoBalance(afterDebt || zero)} USXD`}
           </Flex>
         }
       />
@@ -102,9 +102,9 @@ export function ManageVaultChangesInformation(props: ManageVaultState) {
         label={`${t('system.available-to-generate')}`}
         value={
           <Flex>
-            {`${formatCryptoBalance(daiYieldFromLockedCollateral || zero)} USX`}
+            {`${formatCryptoBalance(daiYieldFromLockedCollateral || zero)} USXD`}
             <VaultChangesInformationArrow />
-            {`${formatCryptoBalance(daiYieldFromTotalCollateral || zero)} USX`}
+            {`${formatCryptoBalance(daiYieldFromTotalCollateral || zero)} USXD`}
           </Flex>
         }
       />

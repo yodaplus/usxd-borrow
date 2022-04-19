@@ -118,7 +118,7 @@ function ManageVaultForm(props: ManageVaultState) {
         />
       )}
       {isDaiAllowanceStage && (
-        <VaultAllowanceStatus {...props} allowanceTxHash={daiAllowanceTxHash} token={'USX'} />
+        <VaultAllowanceStatus {...props} allowanceTxHash={daiAllowanceTxHash} token={'USXD'} />
       )}
       {isManageStage && <ManageVaultConfirmationStatus {...props} />}
     </VaultFormContainer>

@@ -20,19 +20,19 @@ function manageVaultButtonText(state: ManageVaultState): string {
         : state.insufficientCollateralAllowance
         ? t('set-token-allowance', { token: state.vault.token })
         : state.insufficientDaiAllowance
-        ? t('set-token-allowance', { token: 'USX' })
+        ? t('set-token-allowance', { token: 'USXD' })
         : t('confirm')
 
     case 'proxySuccess':
       return state.insufficientCollateralAllowance
         ? t('set-token-allowance', { token: state.vault.token })
         : state.insufficientDaiAllowance
-        ? t('set-token-allowance', { token: 'USX' })
+        ? t('set-token-allowance', { token: 'USXD' })
         : t('continue')
 
     case 'collateralAllowanceSuccess':
       return state.insufficientDaiAllowance
-        ? t('set-token-allowance', { token: 'USX' })
+        ? t('set-token-allowance', { token: 'USXD' })
         : t('continue')
 
     case 'daiAllowanceSuccess':
@@ -56,7 +56,7 @@ function manageVaultButtonText(state: ManageVaultState): string {
     case 'daiAllowanceWaitingForConfirmation':
       return state.customDaiAllowanceAmountEmpty
         ? t('enter-allowance-amount')
-        : t('set-token-allowance', { token: 'USX' })
+        : t('set-token-allowance', { token: 'USXD' })
 
     case 'collateralAllowanceFailure':
     case 'daiAllowanceFailure':
@@ -115,7 +115,7 @@ function manageVaultSecondaryButtonText(state: ManageVaultState): string {
   switch (state.stage) {
     case 'daiAllowanceFailure':
     case 'collateralAllowanceFailure':
-      return t('edit-token-allowance', { token: isCollateralAllowanceStage ? token : 'USX' })
+      return t('edit-token-allowance', { token: isCollateralAllowanceStage ? token : 'USXD' })
     case 'multiplyTransitionEditing':
     case 'multiplyTransitionWaitingForConfirmation':
     case 'multiplyTransitionFailure':

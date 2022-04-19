@@ -456,7 +456,7 @@ export function createManageMultiplyVault$(
                   ? allowance$(vault.token, account, proxyAddress)
                   : of(undefined)
               const daiAllowance$ =
-                account && proxyAddress ? allowance$('USX', account, proxyAddress) : of(undefined)
+                account && proxyAddress ? allowance$('USXD', account, proxyAddress) : of(undefined)
 
               return combineLatest(collateralAllowance$, daiAllowance$).pipe(
                 first(),

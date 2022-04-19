@@ -53,7 +53,7 @@ function GenerateInput({
       collapsed={collapsed}
       action="Generate"
       amount={generateAmount}
-      token={'USX'}
+      token={'USXD'}
       showMax={true}
       disabled={!accountIsController}
       maxAmount={maxGenerateAmount}
@@ -112,7 +112,7 @@ function PaybackInput({
       collapsed={collapsed}
       action="Payback"
       amount={paybackAmount}
-      token={'USX'}
+      token={'USXD'}
       showMax={true}
       maxAmount={maxPaybackAmount}
       maxAmountLabel={'Max'}
@@ -176,7 +176,7 @@ export function ManageVaultEditing(props: ManageVaultState) {
                 <Text pr={1}>
                   {t('manage-vault.action-option', {
                     action: isDaiEditing ? t('vault-actions.deposit') : t('vault-actions.generate'),
-                    token: isDaiEditing ? token : 'USX',
+                    token: isDaiEditing ? token : 'USXD',
                   })}
                 </Text>
               </Button>
@@ -211,7 +211,7 @@ export function ManageVaultEditing(props: ManageVaultState) {
                 <Text pr={1}>
                   {t('manage-vault.action-option', {
                     action: isDaiEditing ? t('vault-actions.withdraw') : t('vault-actions.payback'),
-                    token: isDaiEditing ? token : 'USX',
+                    token: isDaiEditing ? token : 'USXD',
                   })}
                 </Text>
               </Button>

@@ -31,7 +31,7 @@ function getGasText({
       ) : gasEstimationDai ? (
         <Flex sx={{ fontSize: 5, alignItems: 'center' }}>
           <Icon name="dai" size="24px" sx={{ position: 'relative', top: '1px' }} />
-          <Text ml={1}>{`~${formatPrice(gasEstimationDai, 'USX')}`}</Text>
+          <Text ml={1}>{`~${formatPrice(gasEstimationDai, 'USXD')}`}</Text>
         </Flex>
       ) : (
         '--'

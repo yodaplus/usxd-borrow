@@ -514,11 +514,11 @@ const tokens = [
     tags: ['stablecoin'],
   },
   {
-    symbol: 'USX',
+    symbol: 'USXD',
     precision: 18,
     digits: 4,
     maxSell: '10000000',
-    name: 'USX',
+    name: 'USXD',
     icon: 'dai',
     iconCircle: 'dai_circle_color',
     iconColor: 'dai_color',

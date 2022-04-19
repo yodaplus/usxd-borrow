@@ -106,9 +106,9 @@ export function OpenMultiplyVaultChangesInformation(props: OpenMultiplyVaultStat
         label={'Outstanding Debt'}
         value={
           <Flex>
-            {zeroBalance} USX
+            {zeroBalance} USXD
             <VaultChangesInformationArrow />
-            {formatCryptoBalance(afterOutstandingDebt || zero)} USX
+            {formatCryptoBalance(afterOutstandingDebt || zero)} USXD
           </Flex>
         }
       />

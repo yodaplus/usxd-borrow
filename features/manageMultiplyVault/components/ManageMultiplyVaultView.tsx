@@ -72,7 +72,7 @@ function ManageMultiplyVaultForm(props: ManageMultiplyVaultState) {
         />
       )}
       {isDaiAllowanceStage && (
-        <VaultAllowanceStatus {...props} allowanceTxHash={daiAllowanceTxHash} token={'USX'} />
+        <VaultAllowanceStatus {...props} allowanceTxHash={daiAllowanceTxHash} token={'USXD'} />
       )}
       {isManageStage && <ManageMultiplyVaultConfirmationStatus {...props} />}
     </VaultFormContainer>

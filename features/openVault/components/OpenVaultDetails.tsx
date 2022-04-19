@@ -38,15 +38,15 @@ export function OpenVaultDetailsSummary({
         label={t('system.vault-dai-debt')}
         value={
           <>
-            {formatAmount(zero, 'USX')}
-            {` USX`}
+            {formatAmount(zero, 'USXD')}
+            {` USXD`}
           </>
         }
         valueAfter={
           showAfterPill && (
             <>
-              {formatAmount(generateAmount || zero, 'USX')}
-              {` USX`}
+              {formatAmount(generateAmount || zero, 'USXD')}
+              {` USXD`}
             </>
           )
         }
@@ -74,15 +74,15 @@ export function OpenVaultDetailsSummary({
         label={t('system.available-to-generate')}
         value={
           <>
-            {formatAmount(zero, 'USX')}
-            {` USX`}
+            {formatAmount(zero, 'USXD')}
+            {` USXD`}
           </>
         }
         valueAfter={
           showAfterPill && (
             <>
-              {formatAmount(maxGenerateAmountCurrentPrice.minus(generateAmount || zero), 'USX')}
-              {` USX`}
+              {formatAmount(maxGenerateAmountCurrentPrice.minus(generateAmount || zero), 'USXD')}
+              {` USXD`}
             </>
           )
         }
@@ -93,13 +93,8 @@ export function OpenVaultDetailsSummary({
 }
 
 export function OpenVaultDetails(props: OpenVaultState) {
-  const {
-    afterCollateralizationRatio,
-    afterLiquidationPrice,
-    token,
-    inputAmountsEmpty,
-    stage,
-  } = props
+  const { afterCollateralizationRatio, afterLiquidationPrice, token, inputAmountsEmpty, stage } =
+    props
   const { t } = useTranslation()
   const openModal = useModal()
 

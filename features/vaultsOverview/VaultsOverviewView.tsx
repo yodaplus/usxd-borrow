@@ -100,7 +100,7 @@ const vaultsColumns: ColumnDef<Vault, VaultsFilterState>[] = [
         {label}
       </TableSortHeader>
     ),
-    cell: ({ debt }) => <Text sx={{ textAlign: 'right' }}>{formatCryptoBalance(debt)} USX</Text>,
+    cell: ({ debt }) => <Text sx={{ textAlign: 'right' }}>{formatCryptoBalance(debt)} USXD</Text>,
   },
   {
     headerLabel: '',
@@ -175,7 +175,7 @@ export function Summary({ summary }: { summary: VaultSummary }) {
           </Text>
           <Text variant="header2" sx={{ mt: 2 }}>
             {formatCryptoBalance(summary.totalDaiDebt)}
-            <Text sx={{ fontSize: '20px', display: 'inline', ml: 2 }}>USX</Text>
+            <Text sx={{ fontSize: '20px', display: 'inline', ml: 2 }}>USXD</Text>
           </Text>
         </Box>
         <Box sx={{ gridRow: ['initial', '2/3', 'auto'] }}>

@@ -156,7 +156,7 @@ function PaybackInput({
     <VaultActionInput
       action="Deposit"
       amount={paybackAmount}
-      token="USX"
+      token="USXD"
       showMax={true}
       maxAmount={maxPaybackAmount}
       maxAmountLabel={'Max'}
@@ -177,7 +177,7 @@ function GenerateInput({
     <VaultActionInput
       action="Withdraw"
       amount={generateAmount}
-      token="USX"
+      token="USXD"
       showMax={true}
       maxAmount={maxGenerateAmount}
       maxAmountLabel={'Max'}
@@ -473,7 +473,7 @@ function CloseVaultAction(props: ManageMultiplyVaultState) {
   } = props
 
   const closeToCollateral = closeVaultTo === 'collateral'
-  const closeToTokenName = closeToCollateral ? token : 'USX'
+  const closeToTokenName = closeToCollateral ? token : 'USXD'
   const tokenData = getToken(token)
 
   return (
@@ -486,7 +486,7 @@ function CloseVaultAction(props: ManageMultiplyVaultState) {
           isActive={closeToCollateral}
         />
         <CloseVaultCard
-          text="Close to USX"
+          text="Close to USXD"
           icon="dai_circle_color"
           onClick={() => setCloseVaultTo!('dai')}
           isActive={!closeToCollateral}

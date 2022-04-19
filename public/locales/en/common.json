@@ -29,7 +29,7 @@
   "ok": "Ok",
   "back-to-editing": "Back to editing",
   "balance": "Balance",
-  "balance-insufficient": "Not enough USX in your wallet",
+  "balance-insufficient": "Not enough USXD in your wallet",
   "balances": "Balances",
   "buy": "Buy",
   "careers": {
@@ -87,10 +87,10 @@
   "creating-vault": "Creating Vault",
   "currency": "Currency",
   "custom": "Custom",
-  "dai-being-generated": "USX being generated",
-  "dai-paying-back": "USX paying back ({{amount}})",
-  "dai-paying-back-label": "USX paying back",
-  "dai-savings-rate": "USX Savings Rate",
+  "dai-being-generated": "USXD being generated",
+  "dai-paying-back": "USXD paying back ({{amount}})",
+  "dai-paying-back-label": "USXD paying back",
+  "dai-savings-rate": "USXD Savings Rate",
   "deposit": "Deposit",
   "disconnect": "Disconnect",
   "disconnect-magic": "Log out",
@@ -120,14 +120,14 @@
   "set-proxy-owner-description-pending": "Setting proxy owner",
   "set-proxy-owner-description-recent": "Set proxy owner",
   "set-proxy-owner-description-recent-failed": "Failed to set proxy owner",
-  "open-vault-description-pending": "Opening {{ ilk }} vault, depositing {{ depositAmount }} {{ token }} and generating {{ generateAmount }} USX",
-  "open-vault-description-recent": "Opened {{ ilk }} vault, deposited {{ depositAmount }} {{ token }} and generated {{ generateAmount }} USX",
+  "open-vault-description-pending": "Opening {{ ilk }} vault, depositing {{ depositAmount }} {{ token }} and generating {{ generateAmount }} USXD",
+  "open-vault-description-recent": "Opened {{ ilk }} vault, deposited {{ depositAmount }} {{ token }} and generated {{ generateAmount }} USXD",
   "open-vault-description-recent-failed": "Failed to open {{ ilk }} vault",
-  "deposit-generate-description-pending": "Depositing {{ depositAmount }} {{ token }} and generating {{ generateAmount }} USX from vault {{ id }}",
-  "deposit-generate-description-recent": "Deposited {{ depositAmount }} {{ token }} and generated {{ generateAmount }} USX from vault {{ id }}",
+  "deposit-generate-description-pending": "Depositing {{ depositAmount }} {{ token }} and generating {{ generateAmount }} USXD from vault {{ id }}",
+  "deposit-generate-description-recent": "Deposited {{ depositAmount }} {{ token }} and generated {{ generateAmount }} USXD from vault {{ id }}",
   "deposit-generate-description-recent-failed": "Failed to deposit and generate from vault {{ id }}",
-  "withdraw-payback-description-pending": "Withdrawing {{ withdrawAmount }} {{ token }} and paying back {{ paybackAmount }} USX to vault {{ id }}",
-  "withdraw-payback-description-recent": "Withdrawn {{ withdrawAmount }} {{ token }} and payed back {{ paybackAmount }} USX to vault {{ id }}",
+  "withdraw-payback-description-pending": "Withdrawing {{ withdrawAmount }} {{ token }} and paying back {{ paybackAmount }} USXD to vault {{ id }}",
+  "withdraw-payback-description-recent": "Withdrawn {{ withdrawAmount }} {{ token }} and payed back {{ paybackAmount }} USXD to vault {{ id }}",
   "withdraw-payback-description-recent-failed": "Failed to withdraw and payback to vault {{ id }}",
   "reclaim-collateral-description-pending": "Reclaiming {{ amount }} {{ token }} from vault {{ id }}",
   "reclaim-collateral-description-recent": "Reclaimed {{ amount }} {{ token }} from vault {{ id }}",
@@ -153,25 +153,25 @@
     "popular": "Popular assets"
   },
   "gas-estimation-error": "Error",
-  "get-dai": "Get USX",
+  "get-dai": "Get USXD",
   "get-started": "Get Started",
   "go-to-vault": "Go to Vault #{{id}}",
   "here": "here",
   "history": {
     "auction_finished_v2": "Auction <0>#{{auctionId}}</0> finished, <0>{{remainingCollateral}} {{token}}</0> remained",
-    "auction_started": "Auction started, <0>{{collateralAmount}} {{token}}</0> taken to cover <0>{{daiAmount}} USX</0>",
-    "auction_started_v2": "Auction <0>#{{auctionId}}</0> started, <0>{{collateralAmount}} {{token}}</0> taken to cover <0>{{daiAmount}} USX</0>",
+    "auction_started": "Auction started, <0>{{collateralAmount}} {{token}}</0> taken to cover <0>{{daiAmount}} USXD</0>",
+    "auction_started_v2": "Auction <0>#{{auctionId}}</0> started, <0>{{collateralAmount}} {{token}}</0> taken to cover <0>{{daiAmount}} USXD</0>",
     "deposit": "Deposited <0>{{collateralAmount}} {{token}}</0> into Vault",
-    "generate": "Generated <0>{{daiAmount}}</0> USX from Vault",
+    "generate": "Generated <0>{{daiAmount}}</0> USXD from Vault",
     "migrate": "Vault migrated",
-    "move_dest": "Moved <0>{{collateralAmount}} {{token}}</0> and <0>{{daiAmount}}</0> USX debt to the vault",
-    "move_src": "Moved <0>{{collateralAmount}} {{token}}</0> and <0>{{daiAmount}}</0> USX debt from the vault",
+    "move_dest": "Moved <0>{{collateralAmount}} {{token}}</0> and <0>{{daiAmount}}</0> USXD debt to the vault",
+    "move_src": "Moved <0>{{collateralAmount}} {{token}}</0> and <0>{{daiAmount}}</0> USXD debt from the vault",
     "open": "Opened a new Vault with id <0>#{{cdpId}}</0>",
     "payback": "Payback <0>{{daiAmount}}</0> Dai to Vault",
     "transfer": "Vault given to <0>{{transferTo}}</0> by <0>{{transferFrom}}</0>",
     "withdraw": "Withdrew <0>{{collateralAmount}} {{token}}</0> from Vault",
     "openmultiplyvault": "Open multiply Vault",
-    "increasemultiple": "Increased multiple, bought using USX",
+    "increasemultiple": "Increased multiple, bought using USXD",
     "decreasemultiple": "Decreased multiple, sold collateral",
     "closevaultexitdai": "Closed Vault, exited to Dai",
     "closevaultexitcollateral": "Closed Vault, exited to collateral"
@@ -184,8 +184,8 @@
   "keyWithCount_plural": "{{count}} items",
   "landing": {
     "hero": {
-      "headline": "USX – XDC Collateralised Stablecoin",
-      "subheader": "Open a Vault, deposit collaterals and borrow USX.<0/> Connect a wallet to start."
+      "headline": "USXD – XDC Collateralised Stablecoin",
+      "subheader": "Open a Vault, deposit collaterals and borrow USXD.<0/> Connect a wallet to start."
     }
   },
   "languages": "Languages",
@@ -203,7 +203,7 @@
   "ledger-select-title": "Select Ledger Live or Legacy",
   "manage-vault": {
     "action-option": "{{action}} {{token}} with this transaction",
-    "dai-available": "USX available",
+    "dai-available": "USXD available",
     "dust-limit": "Dust Limit",
     "liquidation-fee": "Liquidation Fee",
     "min-collat-ratio": "Min. collateral ratio",
@@ -212,8 +212,8 @@
     "title": "Manage Vault",
     "action": "Manage Vault",
     "warnings": {
-      "potential-generate-amount-less-than-debt-floor": "Minimum USX required to open a Vault is {{debtFloor}}. Please add more collateral to generate {{debtFloor}} USX",
-      "debt-is-less-than-debt-floor": "Your current USX debt is below the minimum of {{debtFloor}}. Because of this some Vault actions are not possible. Please generate more USX to take you above the minimum or payback all your debt",
+      "potential-generate-amount-less-than-debt-floor": "Minimum USXD required to open a Vault is {{debtFloor}}. Please add more collateral to generate {{debtFloor}} USXD",
+      "debt-is-less-than-debt-floor": "Your current USXD debt is below the minimum of {{debtFloor}}. Because of this some Vault actions are not possible. Please generate more USXD to take you above the minimum or payback all your debt",
       "vault-will-be-at-risk-level-danger": "With this action your vault will be at a collateralization ratio very close to the minimum required",
       "vault-will-be-at-risk-level-danger-at-next-price": "With this action your vault will be at a collateralization ratio very close to the minimum required at the next price update",
       "vault-will-be-at-risk-level-warning": "With this action your vault will be at a collateralization ratio near the minimum required",
@@ -223,27 +223,27 @@
       "deposit-amount-exceeds-collateral-balance": "You cannot deposit more collateral than the amount in your wallet",
       "withdraw-amount-exceeds-free-collateral": "You cannot withdraw more than {{maxWithdrawAmount}} {{token}}",
       "withdraw-amount-exceeds-free-collateral-at-next-price": "You cannot withdraw more than {{maxWithdrawAmount}} {{token}}",
-      "generate-amount-exceeds-dai-yield-from-total-collateral": "The collateralization ratio for this Vault is too low. Please generate less USX",
-      "generate-amount-exceeds-dai-yield-from-total-collateral-at-next-price": "The collateralization ratio for this Vault is too low at the next price update. Please generate less USX",
-      "generate-amount-exceeds-debt-ceiling": "You are trying to generate more than the current debt ceiling allows. The amount of USX that can be generated is {{maxGenerateAmount}}",
-      "generate-amount-less-than-debt-floor": "This vault type requires a minimum of {{debtFloor}} USX to be generated. Read more about the Minimum Vault Debt <0>here</0>.",
+      "generate-amount-exceeds-dai-yield-from-total-collateral": "The collateralization ratio for this Vault is too low. Please generate less USXD",
+      "generate-amount-exceeds-dai-yield-from-total-collateral-at-next-price": "The collateralization ratio for this Vault is too low at the next price update. Please generate less USXD",
+      "generate-amount-exceeds-debt-ceiling": "You are trying to generate more than the current debt ceiling allows. The amount of USXD that can be generated is {{maxGenerateAmount}}",
+      "generate-amount-less-than-debt-floor": "This vault type requires a minimum of {{debtFloor}} USXD to be generated. Read more about the Minimum Vault Debt <0>here</0>.",
       "generate-amount-more-than-max-flash-amount": "This transaction exceeds the maximum flash loan amount of {{maxFlashAmount}}, please lower the multiple, or deposit amount.",
-      "payback-amount-exceeds-dai-balance": "You cannot payback more USX than the amount in your wallet",
-      "payback-amount-exceeds-vault-debt": "You are trying to payback more than your USX debt for this Vault",
-      "debt-will-be-less-than-debt-floor": "The Vault debt amount either must be 0 or exceed {{debtFloor}} amount of USX. Please change your payback amount",
+      "payback-amount-exceeds-dai-balance": "You cannot payback more USXD than the amount in your wallet",
+      "payback-amount-exceeds-vault-debt": "You are trying to payback more than your USXD debt for this Vault",
+      "debt-will-be-less-than-debt-floor": "The Vault debt amount either must be 0 or exceed {{debtFloor}} amount of USXD. Please change your payback amount",
       "custom-collateral-allowance-amount-exceeds-maxuint256": "Allowance too large. Please decrease custom allowance amount",
       "custom-collateral-allowance-amount-less-than-deposit-amount": "You need at least an allowance of your deposit amount to continue",
       "custom-dai-allowance-amount-exceeds-maxuint256": "Allowance too large. Please decrease custom allowance amount",
       "custom-dai-allowance-amount-less-than-payback-amount": "You need at least an allowance of your payback amount to continue",
       "depositing-all-eth-balance": "You need some XDC to pay for the gas fees. Lower your deposit amount",
       "ledger-enable-contract-data": "Please enable Contract data on the Ledgers Ethereum app Settings",
-      "withdraw-collateral-on-vault-under-debt-floor": "You cannot withdraw from your vault while it is below the minimum required of {{debtFloor}} USX. To withdraw your collateral, payback your debt fully. Learn more about the Minimum Vault Debt <0>here</0>.",
+      "withdraw-collateral-on-vault-under-debt-floor": "You cannot withdraw from your vault while it is below the minimum required of {{debtFloor}} USXD. To withdraw your collateral, payback your debt fully. Learn more about the Minimum Vault Debt <0>here</0>.",
       "exchange-error": "Could not fetch exchange prices for doing this multiply action.",
       "has-to-deposit-collateral-on-empty-vault": "There is no collateral in this vault. Please first add collateral in the 'Other actions' tab, with the 'deposit collateral' action",
-      "deposit-collateral-on-vault-under-debt-floor": "You cannot deposit to your vault while it is below the minimum debt required of {{debtFloor}}. To add more collateral, generate USX to get above the minimum required. Learn more about the Minimum Vault Debt here <0>here</0>)"
+      "deposit-collateral-on-vault-under-debt-floor": "You cannot deposit to your vault while it is below the minimum debt required of {{debtFloor}}. To add more collateral, generate USXD to get above the minimum required. Learn more about the Minimum Vault Debt here <0>here</0>)"
     },
     "card": {
-      "collateralization-ratio-calculated": "Your collateralization ratio is calculated by: value of your collateral / USX debt.",
+      "collateralization-ratio-calculated": "Your collateralization ratio is calculated by: value of your collateral / USXD debt.",
       "collateralization-ratio-header2": "Current Collateralization ratio:",
       "collateralization-ratio-description": "The price used to calculate the value of your collateral is the price obtained from the Maker oracles. Your collateralization ratio needs to be above the minimum required at all times to not get liquidated.",
       "collateralization-ratio-next-price": "Your collateralization ratio on the next price will be:",
@@ -255,25 +255,25 @@
   "manage-multiply-vault": {
     "tooltip": {
       "vaultId": "The Vault ID is a unique reference for your Vault.",
-      "stabilityFee": "The USX System collects a Stability Fee on Dai that is generated from Vaults. It is a variable-rate fee that changes when USX governing body votes on proposals put forth by Risk Teams.",
-      "liquidationFee": "If your vault is liquidated, a liquidation penalty is added to your vault’s total outstanding debt in USX, which results in more collateral being sold to cover the outstanding debt. This is done to incentivize vaults owners to avoid liquidation.\nThe size of the liquidation penalty is determined by the Liquidation Fee which is calculated based on the debt in the vault.",
+      "stabilityFee": "The USXD System collects a Stability Fee on Dai that is generated from Vaults. It is a variable-rate fee that changes when USXD governing body votes on proposals put forth by Risk Teams.",
+      "liquidationFee": "If your vault is liquidated, a liquidation penalty is added to your vault’s total outstanding debt in USXD, which results in more collateral being sold to cover the outstanding debt. This is done to incentivize vaults owners to avoid liquidation.\nThe size of the liquidation penalty is determined by the Liquidation Fee which is calculated based on the debt in the vault.",
       "min-collateral": "This is also called the Liquidation Ratio. If the Vault reaches below the minimum collateralization level it is considered undercollateralized and is subject to liquidation. Your collateral will then be partially auctioned off to cover outstanding debt and liquidation fee.",
-      "dust-limit": "The Dust Limit specifies the minimum amount of USX that can be minted for this type of Vault. This value is also called the \"Debt Floor\"."
+      "dust-limit": "The Dust Limit specifies the minimum amount of USXD that can be minted for this type of Vault. This value is also called the \"Debt Floor\"."
     },
     "card": {
-      "liquidation-price-description": "The Liquidation Price specifies the collateral price where your vault is subject to liquidation. If you think your vault is too close to liquidation price you can add more collateral or you can pay back some of your USX debt.",
+      "liquidation-price-description": "The Liquidation Price specifies the collateral price where your vault is subject to liquidation. If you think your vault is too close to liquidation price you can add more collateral or you can pay back some of your USXD debt.",
       "liquidation-price-current": "Your current liquidation price is:",
       "liquidation-percentage-below": "That is {{percentageBelow}} below the current price",
       "buying-power": "Buying power",
-      "buying-power-description": "This is how much USX you can use to buy more collateral right now. Buying Power specifies the maximum of USX you can buy more collateral with based on the current state of your position. It is calculated by taking the maximum USX available to you, using it to purchase more collateral, and locking the collateral back into the vault.",
+      "buying-power-description": "This is how much USXD you can use to buy more collateral right now. Buying Power specifies the maximum of USXD you can buy more collateral with based on the current state of your position. It is calculated by taking the maximum USXD available to you, using it to purchase more collateral, and locking the collateral back into the vault.",
       "current-price": "Current Price",
-      "current-price-description": "This is the current price of your vault collateral supplied by the price oracles. There is a one hour delay before the oracle price is made current in the USX System.",
+      "current-price-description": "This is the current price of your vault collateral supplied by the price oracles. There is a one hour delay before the oracle price is made current in the USXD System.",
       "next-price": "Next Price",
-      "next-price-description": "Here you can see the next price that will go into effect in the USX System. Compare this with the Liquidation Price to see whether your vault will be liquidated on the next price update.\n{{nextPrice}}",
+      "next-price-description": "Here you can see the next price that will go into effect in the USXD System. Compare this with the Liquidation Price to see whether your vault will be liquidated on the next price update.\n{{nextPrice}}",
       "more-info-oracles": "More information on oracles can be found <0>here</0>",
       "net-value": "Net Value",
-      "net-value-description": "The Net Value is calculated as the current value of the collateral in your vault minus the current debt.\nNote: This will not be exactly equal to the amount you will receive if you close your vault to USX. This is due to fees applied when swapping collateral to USX. The Net Value is calculated using the market price for the collateral using 1Inch.",
-      "deposit-collateral-on-vault-under-debt-floor": "You cannot deposit to your vault while it is below the minimum debt required of {{debtFloor}}. To add more collateral, generate USX to get above the minimum required. Learn more about the Minimum Vault Debt here <0>here</0>)"
+      "net-value-description": "The Net Value is calculated as the current value of the collateral in your vault minus the current debt.\nNote: This will not be exactly equal to the amount you will receive if you close your vault to USXD. This is due to fees applied when swapping collateral to USXD. The Net Value is calculated using the market price for the collateral using 1Inch.",
+      "deposit-collateral-on-vault-under-debt-floor": "You cannot deposit to your vault while it is below the minimum debt required of {{debtFloor}}. To add more collateral, generate USXD to get above the minimum required. Learn more about the Minimum Vault Debt here <0>here</0>)"
     }
   },
   "max": "Max",
@@ -299,11 +299,11 @@
     "oracles": "Oracles",
     "dai-wallet": "Dai Wallet",
     "borrow": "Borrow",
-    "oasis-borrow": "USX Borrow"
+    "oasis-borrow": "USXD Borrow"
   },
   "new-to-ethereum": "New to Xinfin? ",
   "next": "Next",
-  "no-dai": "No USX",
+  "no-dai": "No USXD",
   "no-activity": "No activity to show",
   "notice-privacy": "By using our site you agree to our <0>Cookie Policy</0>.",
   "notification-status-complete": "Complete",
@@ -317,12 +317,12 @@
   "notification-status-sign": "Sign Tx",
   "of": "of",
   "one-of-some": "{{one}} of {{some}}",
-  "onramp-leave-message": "By clicking buy, you will leave USX Borrow and be redirected to a third party website where you will complete the buy process.",
+  "onramp-leave-message": "By clicking buy, you will leave USXD Borrow and be redirected to a third party website where you will complete the buy process.",
   "open-new-vault": "Open new Vault",
   "open-vault": {
     "title": "Open Vault",
     "warnings": {
-      "potential-generate-amount-less-than-debt-floor": "Minimum USX required to open a Vault is {{debtFloor}}. Please add more collateral to generate {{debtFloor}} USX",
+      "potential-generate-amount-less-than-debt-floor": "Minimum USXD required to open a Vault is {{debtFloor}}. Please add more collateral to generate {{debtFloor}} USXD",
       "vault-will-be-at-risk-level-danger": "With this action your vault will be at a collateralization ratio very close to the minimum required",
       "vault-will-be-at-risk-level-danger-at-next-price": "With this action your vault will be at a collateralization ratio very close to the minimum required at the next price update",
       "vault-will-be-at-risk-level-warning": "With this action your vault will be at a collateralization ratio near the minimum required",
@@ -330,12 +330,12 @@
     },
     "errors": {
       "deposit-amount-exceeds-collateral-balance": "You cannot deposit more collateral than the amount in your wallet",
-      "generate-amount-exceeds-dai-yield-from-depositing-collateral": "The collateralization ratio for this Maker Vault will be too low. Please generate less USX",
-      "generate-amount-exceeds-dai-yield-from-depositing-collateral-at-next-price": "The collateralization ratio for this Maker Vault will be too low at the next price update. Please generate less USX",
-      "generate-amount-exceeds-debt-ceiling": "You are trying to generate more than the current debt ceiling allows. The amount of USX that can be generated is {{maxGenerateAmount}}",
-      "generate-amount-less-than-debt-floor": "This vault type requires a minimum of {{debtFloor}} USX to be generated. Read more about the Minimum Vault Debt <0>here</0>.",
+      "generate-amount-exceeds-dai-yield-from-depositing-collateral": "The collateralization ratio for this Maker Vault will be too low. Please generate less USXD",
+      "generate-amount-exceeds-dai-yield-from-depositing-collateral-at-next-price": "The collateralization ratio for this Maker Vault will be too low at the next price update. Please generate less USXD",
+      "generate-amount-exceeds-debt-ceiling": "You are trying to generate more than the current debt ceiling allows. The amount of USXD that can be generated is {{maxGenerateAmount}}",
+      "generate-amount-less-than-debt-floor": "This vault type requires a minimum of {{debtFloor}} USXD to be generated. Read more about the Minimum Vault Debt <0>here</0>.",
       "generate-amount-more-than-max-flash-amount": "This transaction exceeds the maximum flash loan amount of {{maxFlashAmount}}, please lower the multiple, or deposit amount.",
-      "debt-will-be-less-than-debt-floor": "The Vault debt amount either must be 0 or exceed {{debtFloor}} amount of USX. Please change your payback amount",
+      "debt-will-be-less-than-debt-floor": "The Vault debt amount either must be 0 or exceed {{debtFloor}} amount of USXD. Please change your payback amount",
       "custom-allowance-amount-exceeds-maxuint256": "Allowance too large. Please decrease custom allowance amount",
       "custom-allowance-amount-less-than-deposit-amount": "You need at least an allowance of your deposit amount to continue",
       "depositing-all-eth-balance": "You need some XDC to pay for the gas fees. Lower your deposit amount",
@@ -349,7 +349,7 @@
   "pending-transactions": "Pending Transactions",
   "permissions": "Set permissions",
   "permissions-btn": "Set permissions",
-  "permissions-desc": "This permission allows USX Borrow to interact with the USX in your wallet.",
+  "permissions-desc": "This permission allows USXD Borrow to interact with the USXD in your wallet.",
   "powered-by": "Powered by",
   "price": "Price",
   "proceed": "Proceed",
@@ -380,12 +380,12 @@
       "title": "Contact"
     },
     "dai": {
-      "description": "A short introduction to USX, the smarter digital currency.",
-      "title": "USX"
+      "description": "A short introduction to USXD, the smarter digital currency.",
+      "title": "USXD"
     },
     "default": {
-      "description": "Borrow USX, a USD pegged Stablecoin, or multiply your exposure using crypto as your collateral",
-      "title": "USX Borrow"
+      "description": "Borrow USXD, a USD pegged Stablecoin, or multiply your exposure using crypto as your collateral",
+      "title": "USXD Borrow"
     },
 
     "support": {
@@ -420,9 +420,9 @@
     "collateral-locked": "Collateral Locked",
     "collateral-ratio": "Collateral Ratio",
     "collateralization-ratio": "Collateralization Ratio",
-    "dai": "USX",
-    "dai-available": "USX Available",
-    "dai-debt": "USX Debt",
+    "dai": "USXD",
+    "dai-available": "USXD Available",
+    "dai-debt": "USXD Debt",
     "deposited": "Deposited",
     "in-my-wallet": "In My Wallet",
     "in-your-wallet": "In Your Wallet",
@@ -432,7 +432,7 @@
     "min-coll-ratio": "Min Coll. Ratio",
     "stability-fee": "Stability Fee",
     "type": "Type",
-    "vault-dai-debt": "Vault USX Debt",
+    "vault-dai-debt": "Vault USXD Debt",
     "vault-id": "Vault ID"
   },
   "token-balance": "{{token}} balance",
@@ -442,7 +442,7 @@
   "tos-accept-message-updated": "Before you can continue, you’ll need to read and accept our updated terms of service.",
   "tos-acceptance-check-in-progress": "Acceptance check in progress...",
   "tos-desc": "By creating a Savings pot, I accept Oasis",
-  "tos-jwt-signature-message": "It looks like you're new to USX Borrow or are using a new device to connect. For added security, please sign a message with your wallet to continue.",
+  "tos-jwt-signature-message": "It looks like you're new to USXD Borrow or are using a new device to connect. For added security, please sign a message with your wallet to continue.",
   "tos-read": "I have read and accept the Terms of Service.",
   "tos-view": "View Terms of Service",
   "tos-wallet-connection-in-progress": "Wallet connection in progress...",
@@ -483,8 +483,8 @@
   },
   "ilks-list": {
     "headers": {
-      "noVaults": "Select a collateral type to create a Vault and borrow USX.",
-      "withVaults": "Open a new Vault.<0/> Borrow USX."
+      "noVaults": "Select a collateral type to create a Vault and borrow USXD.",
+      "withVaults": "Open a new Vault.<0/> Borrow USXD."
     }
   },
   "vaults-overview": {
@@ -499,7 +499,7 @@
       "notConnected-withVaults": "Vaults overview of {{address}}.<0/> Connect your wallet."
     },
     "number-of-vaults": "No. of Vaults",
-    "subheader-no-vaults": "Open a Vault, deposit your collateral, and borrow USX.",
+    "subheader-no-vaults": "Open a Vault, deposit your collateral, and borrow USXD.",
     "total-debt": "Total debt",
     "total-locked": "Total locked",
     "vaults": "Vaults",
@@ -515,16 +515,16 @@
     "liquidating": {
       "header1": "Your {{ collateral }} Vault {{ id }} is about to get liquidated.",
       "header2": "{{ collateral }} Vault {{ id }} is about to get liquidated.",
-      "subheader1": "The next price update of {{ collateral }} will cause a liquidation on this Vault unless collateral is added, or USX is paid back.",
+      "subheader1": "The next price update of {{ collateral }} will cause a liquidation on this Vault unless collateral is added, or USXD is paid back.",
       "subheader2": "Is this your Vault? Please connect with address: {{ address }} and save your Vault from liquidation.",
       "subheader3": "This Vault is now available for liquidation and can be liquidated at anytime."
     },
     "liquidated": {
       "header1": "Your Vault got liquidated",
       "header2": "This Vault got liquidated",
-      "subheader1": "This Vault has been liquidated. A portion of your collateral has been auctioned to pay back your USX debt.",
+      "subheader1": "This Vault has been liquidated. A portion of your collateral has been auctioned to pay back your USXD debt.",
       "subheader2": "You can reclaim {{ amount }} {{ collateral }}",
-      "subheader3": "This Vault has been liquidated. A portion of collateral has been auctioned to pay back the USX debt.",
+      "subheader3": "This Vault has been liquidated. A portion of collateral has been auctioned to pay back the USXD debt.",
       "subheader4": "If this is your vault, connect with address: {{ address }} to reclaim the remaining collateral."
     }
   },
@@ -548,7 +548,7 @@
       "edit": "Configure your Vault",
       "proxy": "Create your smart Proxy ",
       "allowance": "Set {{token}} allowance",
-      "daiAllowance": "Set USX allowance",
+      "daiAllowance": "Set USXD allowance",
       "confirm": "Confirm vault creation",
       "confirm-in-progress": "Vault being created",
       "modified": "Vault is being Modified",
@@ -558,7 +558,7 @@
     },
     "subtext": {
       "collateral": "Deposit or withdraw from your Vault. Save gas by combining transactions.",
-      "dai": "Generate USX from the collateral in your vault, or payback USX. Save gas by combining transactions.",
+      "dai": "Generate USXD from the collateral in your vault, or payback USXD. Save gas by combining transactions.",
       "edit": "Simulate your vault by configuring the amount of collateral to deposit, and slide your multiply factor.",
       "proxy": "With your smart proxy multiple actions can be performed in one transaction for your Vault. This proxy only needs to be set up once.",
       "allowance": "Specify an allowance to set a maximum on the amount of tokens the vault contracts can interact with.",
@@ -583,7 +583,7 @@
   "adjusting-vault-multiply": "Multiplying your Vault in progress",
   "closing-vault-multiply": "Closing your Multiply Vault",
   "your-wallet": "Your wallet",
-  "welcome": "Welcome to the new USX Borrow.",
+  "welcome": "Welcome to the new USXD Borrow.",
   "read-blog-post": "Read the blog post",
   "visit-old-oasis": "Visit the old Oasis",
   "oracles": {
@@ -606,7 +606,7 @@
     },
     "borrow": {
       "header": "Borrow against my {{token}}",
-      "subtext": "Borrow up to {{maxBorrow}} USX for every $100,000 worth of {{token}}",
+      "subtext": "Borrow up to {{maxBorrow}} USXD for every $100,000 worth of {{token}}",
       "button": "Borrow against {{token}}"
     }
   }

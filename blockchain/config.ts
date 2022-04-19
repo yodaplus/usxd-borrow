@@ -50,7 +50,7 @@ const protoMain = {
     ...getCollateralTokens(apothemAddresses),
     WETH: contractDesc(eth, apothemAddresses.ETH),
     DAI: contractDesc(erc20, apothemAddresses.MCD_DAI),
-    USX: contractDesc(erc20, apothemAddresses.MCD_DAI),
+    USXD: contractDesc(erc20, apothemAddresses.MCD_DAI),
   },
   joins: {
     ...getCollateralJoinContracts(apothemAddresses),

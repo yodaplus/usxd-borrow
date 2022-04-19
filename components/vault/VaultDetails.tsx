@@ -432,7 +432,7 @@ export function VaultDetailsCardCurrentPrice(props: CommonVaultState) {
   const currentPrice = `$${formatAmount(currentCollateralPrice, 'USD', 5)}`
   const nextPriceWithChange = (
     <>
-      <Text>${formatAmount(nextCollateralPrice, 'USD')}</Text>
+      <Text>${formatAmount(nextCollateralPrice, 'USD', 5)}</Text>
       <Text sx={{ ml: 2, fontSize: 1 }}>
         {formatPercent(collateralPricePercentageChange.times(100), { precision: 2 })}
       </Text>

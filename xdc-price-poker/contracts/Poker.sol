@@ -10,8 +10,8 @@ interface DripLike {
 }
 
 contract Poker {
-  PokeLike constant Spot = PokeLike(0x56848a428B5CeD7AdC021C75802ab8390092Ab9E);
-  DripLike constant Jug = DripLike(0x6cbe426382cDFf2B2C0E00B865E5358fd59829Ff);
+  PokeLike constant Spot = PokeLike(0xa012d57f451f2EE615BE5369b35d8327EF954c22);
+  DripLike constant Jug = DripLike(0x580EBcc11C32566Aa739A298556C8D8CFf81E22F);
 
   function poke() external {
     Spot.poke('XDC-A');

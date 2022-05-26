@@ -87,7 +87,7 @@ const protoMain = {
   magicLink: {
     apiKey: '',
   },
-  cacheApi: '',
+  cacheApi: 'https://borrow-cache-apothem.yodaplus.net/v1',
   features: new Set<'multiply'>([]),
 }
 
@@ -104,7 +104,7 @@ const hardhat: NetworkConfig = {
   label: 'Hardhat',
   infuraUrl: `http://localhost:8545`,
   infuraUrlWS: `ws://localhost:8545`,
-  cacheApi: '',
+  cacheApi: 'http://localhost:3001/v1',
   dssMultiplyProxyActions: contractDesc(
     dssMultiplyProxyActions,
     getConfig()?.publicRuntimeConfig?.multiplyProxyActions ||

@@ -32,6 +32,7 @@ import { networkNameToId } from '@oasisdex/web3-context/lib/src/network'
 
 networkNameToId['apothem'] = 51
 networkNameToId['main'] = 51
+networkNameToId['mainnet'] = 50
 
 export function contractDesc(abi: any, address: string): ContractDesc {
   return { abi, address }
@@ -96,6 +97,7 @@ export type NetworkConfig = typeof protoMain
 const main: NetworkConfig = protoMain
 
 const apothem: NetworkConfig = protoMain
+const mainnet: NetworkConfig = { ...protoMain, id: '50', name: 'mainnet', label: 'mainnet' }
 
 const hardhat: NetworkConfig = {
   ...protoMain,
@@ -117,8 +119,8 @@ const hardhat: NetworkConfig = {
   ),
 }
 
-export const networksById = keyBy([main, hardhat, apothem], 'id')
-export const networksByName = keyBy([main, hardhat, apothem], 'name')
+export const networksById = keyBy([main, hardhat, apothem, mainnet], 'id')
+export const networksByName = keyBy([main, hardhat, apothem, mainnet], 'name')
 
 export const dappName = 'Oasis'
 export const pollingInterval = 12000

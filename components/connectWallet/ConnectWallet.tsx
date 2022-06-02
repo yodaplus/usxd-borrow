@@ -124,7 +124,10 @@ interface SupportedWallet {
   connectionKind: ConnectionKind
 }
 
-const SUPPORTED_WALLETS: SupportedWallet[] = [{ iconName: 'xdc', connectionKind: 'injected' }]
+const SUPPORTED_WALLETS: SupportedWallet[] = [
+  { iconName: 'xdc', connectionKind: 'injected' },
+  { iconName: 'wallet_connect_color', connectionKind: 'walletConnect' },
+]
 
 function ConnectWalletButtonWrapper({
   children,

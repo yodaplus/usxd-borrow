@@ -1,7 +1,18 @@
 version: '3.8'
 
+services:
+  xdc-price-poker:
+    environment:
+      AWS_SECRET_ID: borrow-apothem-secret
+
 x-aws-cloudformation:
   Resources:
+    Secret:
+      Properties:
+        Name: 'borrow-apothem-secret'
+        SecretString: '{"POKER_WALLET_PRIVATE_KEY": "${POKER_WALLET_PRIVATE_KEY}"}'
+      Type: AWS::SecretsManager::Secret
+
     NginxTCP443Listener:
       Properties:
         Certificates:

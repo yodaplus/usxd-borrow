@@ -145,6 +145,8 @@ const run = async () => {
   console.log('Sending oracle poke() transaction to', POKE_TARGET_CONTRACT)
   await sendTx({ txData: txDataOraclePoke, to: POKE_TARGET_CONTRACT })
 
+  await Promise.all(OSM.map(processOsm))
+
   const txDataPoker = web3.eth.abi.encodeFunctionCall(
     {
       name: 'poke',
@@ -156,8 +158,6 @@ const run = async () => {
 
   console.log('Sending poker poke() transaction to', POKER_CONTRACT)
   await sendTx({ txData: txDataPoker, to: POKER_CONTRACT })
-
-  await Promise.all(OSM.map(processOsm))
 }
 
 const runTry = async () => {

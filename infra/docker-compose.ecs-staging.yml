@@ -1,16 +1,26 @@
 version: '3.8'
 
 services:
-  xdc-price-poker:
+  xdc-price-poker-apothem:
     environment:
       AWS_SECRET_ID: borrow-apothem-secret
 
+  xdc-price-poker-mainnet:
+    environment:
+      AWS_SECRET_ID: borrow-mainnet-secret
+
 x-aws-cloudformation:
   Resources:
-    Secret:
+    SecretApothem:
       Properties:
         Name: 'borrow-apothem-secret'
-        SecretString: '{"POKER_WALLET_PRIVATE_KEY": "${POKER_WALLET_PRIVATE_KEY}"}'
+        SecretString: '{"POKER_WALLET_PRIVATE_KEY": "${POKER_WALLET_PRIVATE_KEY_APOTHEM}"}'
+      Type: AWS::SecretsManager::Secret
+
+    SecretMainnet:
+      Properties:
+        Name: 'borrow-mainnet-secret'
+        SecretString: '{"POKER_WALLET_PRIVATE_KEY": "${POKER_WALLET_PRIVATE_KEY_MAINNET}"}'
       Type: AWS::SecretsManager::Secret
 
     NginxTCP443Listener:
@@ -19,7 +29,13 @@ x-aws-cloudformation:
           - CertificateArn: 'arn:aws:acm:ap-south-1:135135176603:certificate/60d2b9e4-65d6-468c-9e90-3de1c8ace136'
         Protocol: HTTPS
 
-    Xdcpricepoker3001Listener:
+    Xdcpricepokerapothem3001Listener:
+      Properties:
+        Certificates:
+          - CertificateArn: 'arn:aws:acm:ap-south-1:135135176603:certificate/60d2b9e4-65d6-468c-9e90-3de1c8ace136'
+        Protocol: HTTPS
+
+    Xdcpricepokermainnet3002Listener:
       Properties:
         Certificates:
           - CertificateArn: 'arn:aws:acm:ap-south-1:135135176603:certificate/60d2b9e4-65d6-468c-9e90-3de1c8ace136'

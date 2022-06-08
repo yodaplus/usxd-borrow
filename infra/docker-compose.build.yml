@@ -6,7 +6,12 @@ services:
       context: .
       dockerfile: docker/nginx/Dockerfile
 
-  xdc-price-poker:
+  xdc-price-poker-apothem:
+    build:
+      context: .
+      dockerfile: docker/xdc-price-poker/Dockerfile
+
+  xdc-price-poker-mainnet:
     build:
       context: .
       dockerfile: docker/xdc-price-poker/Dockerfile

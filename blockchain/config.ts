@@ -28,10 +28,11 @@ import {
   getOsms,
 } from './addresses/addressesUtils'
 import { default as apothemAddresses } from './addresses/apothem.json'
+import { default as mainnetddresses } from './addresses/mainnet.json'
 import { networkNameToId } from '@oasisdex/web3-context/lib/src/network'
 
 networkNameToId['apothem'] = 51
-networkNameToId['main'] = 51
+networkNameToId['main'] = 50
 networkNameToId['mainnet'] = 50
 
 export function contractDesc(abi: any, address: string): ContractDesc {
@@ -94,10 +95,47 @@ const protoMain = {
 
 export type NetworkConfig = typeof protoMain
 
-const main: NetworkConfig = protoMain
-
 const apothem: NetworkConfig = protoMain
-const mainnet: NetworkConfig = { ...protoMain, id: '50', name: 'mainnet', label: 'mainnet' }
+const mainnet: NetworkConfig = {
+  ...protoMain,
+  id: '50',
+  name: 'mainnet',
+  label: 'mainnet',
+  infuraUrl: 'https://rpc.xinfin.yodaplus.net',
+  collaterals: getCollaterals(mainnetddresses),
+  tokens: {
+    ...getCollateralTokens(mainnetddresses),
+    WETH: contractDesc(eth, mainnetddresses.ETH),
+    DAI: contractDesc(erc20, mainnetddresses.MCD_DAI),
+    USXD: contractDesc(erc20, mainnetddresses.MCD_DAI),
+  },
+  joins: {
+    ...getCollateralJoinContracts(mainnetddresses),
+  },
+  getCdps: contractDesc(getCdps, mainnetddresses.GET_CDPS),
+  mcdOsms: getOsms(mainnetddresses),
+  mcdPot: contractDesc(mcdPot, mainnetddresses.MCD_POT),
+  mcdJug: contractDesc(mcdJug, mainnetddresses.MCD_JUG),
+  mcdEnd: contractDesc(mcdEnd, mainnetddresses.MCD_END),
+  mcdSpot: contractDesc(mcdSpot, mainnetddresses.MCD_SPOT),
+  mcdDog: contractDesc(mcdDog, mainnetddresses.MCD_DOG),
+  dssCdpManager: contractDesc(dssCdpManager, mainnetddresses.CDP_MANAGER),
+  vat: contractDesc(vat, mainnetddresses.MCD_VAT),
+  mcdJoinDai: contractDesc(mcdJoinDai, mainnetddresses.MCD_JOIN_DAI),
+  dsProxyRegistry: contractDesc(dsProxyRegistry, mainnetddresses.PROXY_REGISTRY),
+  dsProxyFactory: contractDesc(dsProxyFactory, mainnetddresses.PROXY_FACTORY),
+  dssProxyActions: contractDesc(dssProxyActions, mainnetddresses.PROXY_ACTIONS),
+  fmm: mainnetddresses.MCD_FLASH,
+  etherscan: {
+    url: 'https://xdc.blocksscan.io',
+    apiUrl: '',
+    apiKey: '',
+  },
+  taxProxyRegistries: [mainnetddresses.PROXY_REGISTRY],
+  dssProxyActionsDsr: contractDesc(dssProxyActionsDsr, mainnetddresses.PROXY_ACTIONS_DSR),
+  cacheApi: 'https://borrow-cache.yodaplus.net/v1',
+  features: new Set<'multiply'>([]),
+}
 
 const hardhat: NetworkConfig = {
   ...protoMain,
@@ -119,8 +157,8 @@ const hardhat: NetworkConfig = {
   ),
 }
 
-export const networksById = keyBy([main, hardhat, apothem, mainnet], 'id')
-export const networksByName = keyBy([main, hardhat, apothem, mainnet], 'name')
+export const networksById = keyBy([hardhat, apothem, mainnet], 'id')
+export const networksByName = keyBy([hardhat, apothem, mainnet], 'name')
 
 export const dappName = 'Oasis'
 export const pollingInterval = 12000

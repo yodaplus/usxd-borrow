@@ -11,7 +11,7 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
-  xdc-price-poker:
+  xdc-price-poker-apothem:
     ports:
       - target: 3001
         published: 3001
@@ -23,6 +23,19 @@ services:
       OSM: '["0x4e1955cCdE51fc1cF58757fdF114839de100837f"]'
       JSON_RPC_NODE_URL: 'https://rpc-apothem.xinfin.yodaplus.net'
       PORT: 3001
+
+  xdc-price-poker-mainnet:
+    ports:
+      - target: 3002
+        published: 3002
+        x-aws-protocol: http
+
+    environment:
+      POKE_TARGET_CONTRACT: '0xfB8dC4f798ad575c590037D9192123cbeCbc84A0'
+      POKER_CONTRACT: '0xC4209Ad04c816cC79C837eBdA2199957cBd5d142'
+      OSM: '["0x4af25dcAC2c13117726202B65f5B21AfD077a078"]'
+      JSON_RPC_NODE_URL: 'https://rpc.xinfin.yodaplus.net'
+      PORT: 3002
 
   nginx:
     depends_on:

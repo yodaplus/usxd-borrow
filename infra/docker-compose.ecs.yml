@@ -2,7 +2,13 @@ version: '3.8'
 
 x-aws-cloudformation:
   Resources:
-    XdcpricepokerService:
+    XdcpricepokerapothemService:
+      Properties:
+        DeploymentConfiguration:
+          MaximumPercent: 100
+          MinimumHealthyPercent: 0
+
+    XdcpricepokermainnetService:
       Properties:
         DeploymentConfiguration:
           MaximumPercent: 100
@@ -14,7 +20,7 @@ x-aws-cloudformation:
           MaximumPercent: 100
           MinimumHealthyPercent: 0
 
-    SecretReadRole:
+    SecretReadRoleApothem:
       Properties:
         AssumeRolePolicyDocument:
           Statement:
@@ -35,15 +41,46 @@ x-aws-cloudformation:
                     - secretsmanager:ListSecretVersionIds
                   Effect: Allow
                   Resource:
-                    - Ref: Secret
+                    - Ref: SecretApothem
               Version: 2012-10-17
             PolicyName: SecretsReadPolicy
       Type: AWS::IAM::Role
 
-    XdcpricepokerTaskDefinition:
+    SecretReadRoleMainnet:
+      Properties:
+        AssumeRolePolicyDocument:
+          Statement:
+            - Action:
+                - sts:AssumeRole
+              Condition: {}
+              Effect: Allow
+              Principal:
+                Service: ecs-tasks.amazonaws.com
+          Version: 2012-10-17
+        Policies:
+          - PolicyDocument:
+              Statement:
+                - Action:
+                    - secretsmanager:GetResourcePolicy
+                    - secretsmanager:GetSecretValue
+                    - secretsmanager:DescribeSecret
+                    - secretsmanager:ListSecretVersionIds
+                  Effect: Allow
+                  Resource:
+                    - Ref: SecretMainnet
+              Version: 2012-10-17
+            PolicyName: SecretsReadPolicy
+      Type: AWS::IAM::Role
+
+    XdcpricepokerapothemTaskDefinition:
       Properties:
         TaskRoleArn:
-          Ref: SecretReadRole
+          Ref: SecretReadRoleApothem
+
+    XdcpricepokermainnetTaskDefinition:
+      Properties:
+        TaskRoleArn:
+          Ref: SecretReadRoleMainnet
 
     NginxTCP80TargetGroup:
       Properties:
@@ -57,7 +94,13 @@ x-aws-cloudformation:
         Matcher:
           HttpCode: 200-499
 
-    Xdcpricepoker3001TargetGroup:
+    Xdcpricepokerapothem3001TargetGroup:
+      Properties:
+        HealthCheckPath: /status
+        Matcher:
+          HttpCode: 200-499
+
+    Xdcpricepokermainnet3002TargetGroup:
       Properties:
         HealthCheckPath: /status
         Matcher:

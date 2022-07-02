@@ -7,7 +7,7 @@ const app = express()
 
 let {
   WALLET_PRIVATE_KEY,
-  POKE_TARGET_CONTRACT,
+  MEDIANS,
   POKER_CONTRACT,
   OSM,
   JSON_RPC_NODE_URL = 'https://rpc-apothem.xinfin.yodaplus.net',
@@ -20,11 +20,6 @@ if (!WALLET_PRIVATE_KEY) {
   process.exit(1)
 }
 
-if (!POKE_TARGET_CONTRACT) {
-  console.log('POKE_TARGET_CONTRACT is not defined')
-  process.exit(1)
-}
-
 if (!POKER_CONTRACT) {
   console.log('POKER_CONTRACT is not defined')
   process.exit(1)
@@ -32,6 +27,10 @@ if (!POKER_CONTRACT) {
 
 if (!OSM) {
   OSM = '[]'
+}
+
+if (!MEDIANS) {
+  MEDIANS = '[]'
 }
 
 const hexSanitize = (web3, str) => {
@@ -45,9 +44,9 @@ const hexSanitize = (web3, str) => {
 const web3 = new Web3(JSON_RPC_NODE_URL)
 
 WALLET_PRIVATE_KEY = hexSanitize(web3, WALLET_PRIVATE_KEY)
-POKE_TARGET_CONTRACT = hexSanitize(web3, POKE_TARGET_CONTRACT)
 POKER_CONTRACT = hexSanitize(web3, POKER_CONTRACT)
 OSM = JSON.parse(OSM)
+MEDIANS = JSON.parse(MEDIANS)
 
 web3.eth.accounts.wallet.add(WALLET_PRIVATE_KEY)
 
@@ -108,45 +107,84 @@ const processOsm = async (address) => {
   await sendTx({ txData: txDataPoke, to: address })
 }
 
-const run = async () => {
-  status = 'FETCH'
+const processMedian = async (address, price) => {
+  status = 'POKE'
 
+  const val = web3.utils.toWei(price, 'ether')
+  const age = Math.floor(new Date().valueOf() / 1000)
+  const wat = 'XDCUSD'
+
+  const sig = await web3.eth.accounts.sign(
+    web3.utils.soliditySha3(
+      {
+        value: val,
+        type: 'uint256',
+      },
+      {
+        value: age,
+        type: 'uint256',
+      },
+      {
+        value: web3.utils.asciiToHex(wat),
+        type: 'bytes32',
+      },
+    ),
+    WALLET_PRIVATE_KEY,
+  )
+
+  const { v, r, s } = sig
+
+  const txDataMedianPoke = web3.eth.abi.encodeFunctionCall(
+    {
+      name: 'poke',
+      type: 'function',
+      inputs: [
+        {
+          type: 'uint256[]',
+          name: 'val_',
+        },
+        {
+          type: 'uint256[]',
+          name: 'age_',
+        },
+        {
+          type: 'uint8[]',
+          name: 'v',
+        },
+        {
+          type: 'bytes32[]',
+          name: 'r',
+        },
+        {
+          type: 'bytes32[]',
+          name: 's',
+        },
+      ],
+    },
+    [[val], [age], [v], [r], [s]],
+  )
+
+  console.log('Sending median poke() transaction to', address)
+  await sendTx({ txData: txDataMedianPoke, to: address })
+}
+
+const getPrice = async () => {
   const res = await fetch('https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=XDC-USDT')
 
   const resJson = await res.json()
 
   const price = resJson?.data?.price
 
-  if (!price) {
-    throw new Error("Can't get the price")
+  if (price) {
+    console.log('Received XDC price:', price)
+  } else {
+    console.log('Failed to get XDC price')
   }
 
-  console.log('Received XDC price:', price)
+  return price
+}
 
-  const priceWei = web3.utils.toWei(price, 'ether')
-  const priceBytes32 = web3.utils.padLeft(web3.utils.toHex(priceWei), 64)
-
-  const txDataOraclePoke = web3.eth.abi.encodeFunctionCall(
-    {
-      name: 'poke',
-      type: 'function',
-      inputs: [
-        {
-          type: 'bytes32',
-          name: 'wut',
-        },
-      ],
-    },
-    [priceBytes32],
-  )
-
-  status = 'POKE'
-
-  console.log('Sending oracle poke() transaction to', POKE_TARGET_CONTRACT)
-  await sendTx({ txData: txDataOraclePoke, to: POKE_TARGET_CONTRACT })
-
-  await Promise.all(OSM.map(processOsm))
-
+const processPoker = async () => {
   const txDataPoker = web3.eth.abi.encodeFunctionCall(
     {
       name: 'poke',
@@ -158,6 +196,27 @@ const run = async () => {
 
   console.log('Sending poker poke() transaction to', POKER_CONTRACT)
   await sendTx({ txData: txDataPoker, to: POKER_CONTRACT })
+}
+
+const wrapStatus = async (status_, promise) => {
+  try {
+    status = status_
+    return await promise
+  } catch (e) {
+    console.log(`${status_} failed:`, e)
+  }
+}
+
+const run = async () => {
+  const price = await wrapStatus('GET_PRICE', getPrice())
+
+  if (price) {
+    await Promise.all(MEDIANS.map((address) => wrapStatus('MEDIAN', processMedian(address, price))))
+  }
+
+  await Promise.all(OSM.map((address) => wrapStatus('OSM', processOsm(address))))
+
+  await wrapStatus('POKER', processPoker())
 }
 
 const runTry = async () => {

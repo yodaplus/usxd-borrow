@@ -32,7 +32,7 @@ import { default as mainnetddresses } from './addresses/mainnet.json'
 import { networkNameToId } from '@oasisdex/web3-context/lib/src/network'
 
 networkNameToId['apothem'] = 51
-networkNameToId['main'] = 50
+networkNameToId['main'] = 51
 networkNameToId['mainnet'] = 50
 
 export function contractDesc(abi: any, address: string): ContractDesc {

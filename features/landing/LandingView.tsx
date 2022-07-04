@@ -174,6 +174,10 @@ export function Hero({ sx, isConnected }: { sx?: SxStyleProp; isConnected: boole
           />
         </AppLink>
       )}
+
+      <Text sx={{ my: 1, ml: 2, fontSize: 3, lineHeight: 'body' }}>
+        {t('beta-disclaimer')}
+      </Text>
     </Flex>
   )
 }

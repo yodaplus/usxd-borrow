@@ -173,7 +173,7 @@ export function setupAppContext() {
     )
     .subscribe(({ account, network }) => {
       if (account && network) {
-        mixpanelIdentify(account, { walletType: network.connectionKind })
+        //mixpanelIdentify(account, { walletType: network.connectionKind })
         trackingEvents.accountChange(account, network.name, network.connectionKind)
       }
     })

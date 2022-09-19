@@ -14,7 +14,7 @@ x-aws-cloudformation:
     SecretApothem:
       Properties:
         Name: 'borrow-apothem-secret'
-        SecretString: '{"POKER_WALLET_PRIVATE_KEY": "${POKER_WALLET_PK_APOTHEM}"}'
+        SecretString: '{"POKER_WALLET_PRIVATE_KEY": "${POKER_WALLET_PRIVATE_KEY_APOTHEM}"}'
       Type: AWS::SecretsManager::Secret
 
     SecretMainnet:

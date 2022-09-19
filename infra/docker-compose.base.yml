@@ -18,9 +18,9 @@ services:
         x-aws-protocol: http
 
     environment:
-      POKE_TARGET_CONTRACT: '0x6911b072DC16Dcc5B55caB7a832cBfcfB3E45069'
-      POKER_CONTRACT: '0x87606d843426a59c47c6574FeFc2Ca98feA0A170'
-      OSM: '["0x4e1955cCdE51fc1cF58757fdF114839de100837f"]'
+      MEDIANS: '["0x60D8F198B188d2e15d4fd9806A3BEc7cCeD15cDF"]'
+      POKER_CONTRACT: '0x016b16cb3bcE4eDc57Aad589Dfe589ae625e944b'
+      OSM: '["0xf56Ec03BA85489F4C6A2E971aB5853980B3DFE46"]'
       JSON_RPC_NODE_URL: 'https://rpc-apothem.xinfin.yodaplus.net'
       PORT: 3001
 
